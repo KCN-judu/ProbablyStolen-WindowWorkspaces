@@ -1,0 +1,29 @@
+# Window Workspaces - 日本語 (ja)
+opt_snap,ウィンドウをスナップ
+opt_snap_tip,ドラッグ中のウィンドウが他のウィンドウや画面の端に吸い付きます。Altを押しながらで自由に動かせます。
+opt_grid_snap,グリッドにスナップ
+opt_grid_snap_tip,どの端からも離れているときは、ドラッグ中のウィンドウがインベントリのマス目にそろいます。
+opt_grid_shown,ドラッグ中にグリッドを表示
+opt_grid_shown_tip,ウィンドウをドラッグしている間、薄いグリッドが表示されます。
+opt_key_cycle,次のワークスペース
+opt_key_cycle_tip,次のワークスペースに切り替えます。Shiftを押しながらで前に戻ります。
+opt_key_manager,ワークスペース管理
+opt_key_manager_tip,ワークスペースの切り替え・作成・名前変更・削除ができる管理ウィンドウを開きます。
+window_title,ワークスペース
+workspace,ワークスペース #
+current,現在
+empty,空
+windows,ウィンドウ #個
+missing,（なし）
+toast_title,ワークスペース
+manager_desc,ワークスペースごとに開いている容器の組を覚えています。切り替えると今の組を閉じ、もう一方の組を前と同じ位置で開きます。
+button_new,新しいワークスペース
+tip_new,空のワークスペースを追加します。切り替えてから、入れたい容器を開いてください。
+button_switch,切り替え
+tip_switch,現在のワークスペースのウィンドウを閉じ、こちらのウィンドウを元の位置で開きます。
+tip_delete,このワークスペースを削除します。現在のワークスペースを削除すると、先に隣へ切り替わります。
+hint_here,いま開いた容器はこのワークスペースに属します。
+hint_empty,空です。ここに切り替えて、入れたい容器を開いてください。
+tip_chip,クリックでこの容器をワークスペースから外します。
+tip_missing,この容器はもう店にありません。クリックで忘れます。
+toast_panel,切り替え

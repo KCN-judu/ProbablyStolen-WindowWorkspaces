@@ -1,0 +1,29 @@
+# Window Workspaces - 简体中文 (zh)
+opt_snap,窗口吸附
+opt_snap_tip,拖动窗口时吸附到其他窗口和屏幕的边缘。按住 Alt 可自由拖动。
+opt_grid_snap,吸附到网格
+opt_grid_snap_tip,不靠近任何边缘时，拖动的窗口会对齐物品格子的网格。
+opt_grid_shown,拖动时显示网格
+opt_grid_shown_tip,拖动窗口时显示一层浅浅的网格。
+opt_key_cycle,下一个工作区
+opt_key_cycle_tip,切换到下一个工作区，按住 Shift 切换到上一个。
+opt_key_manager,工作区管理
+opt_key_manager_tip,打开工作区管理窗口：切换、新建、重命名和删除工作区。
+window_title,工作区
+workspace,工作区 #
+current,当前
+empty,空
+windows,# 个窗口
+missing,（已不在）
+toast_title,工作区
+manager_desc,每个工作区保存一组打开的容器。切换时收起当前这组，并在原来的位置打开另一组。
+button_new,新建工作区
+tip_new,添加一个空工作区。切换过去后打开的容器都会归它。
+button_switch,切换
+tip_switch,关闭当前工作区的窗口，并在原来的位置打开这些窗口。
+tip_delete,删除这个工作区。删除当前所在的工作区时，会先切换到相邻的工作区。
+hint_here,现在打开的容器都属于这个工作区。
+hint_empty,空工作区。切换过来后打开的容器都会归它。
+tip_chip,点击把这个容器移出工作区。
+tip_missing,这个容器已经不在店里了，点击忘记它。
+toast_panel,切换

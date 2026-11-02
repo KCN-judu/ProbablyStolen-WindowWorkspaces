@@ -1,0 +1,13 @@
+{
+  "title": "Window Workspaces",
+  "summary": "Windows snap to each other while you drag them, and workspaces switch whole sets of open containers with one key.",
+  "locales": [
+    "zh_CN"
+  ],
+  "order": [
+    "index.md",
+    "workspaces.md",
+    "how-it-works.md",
+    "building.md"
+  ]
+}

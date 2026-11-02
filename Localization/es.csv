@@ -1,0 +1,29 @@
+# Window Workspaces - Español (es)
+opt_snap,Ajustar ventanas
+opt_snap_tip,Las ventanas arrastradas se ajustan a los bordes de otras ventanas y de la pantalla. Mantén Alt para arrastrar libremente.
+opt_grid_snap,Ajustar a la cuadrícula
+opt_grid_snap_tip,Lejos de cualquier borde, una ventana arrastrada se alinea con la cuadrícula del inventario.
+opt_grid_shown,Mostrar la cuadrícula al arrastrar
+opt_grid_shown_tip,Aparece una cuadrícula tenue mientras arrastras una ventana.
+opt_key_cycle,Siguiente espacio de trabajo
+opt_key_cycle_tip,Cambia al siguiente espacio de trabajo. Mantén Mayús para el anterior.
+opt_key_manager,Gestor de espacios de trabajo
+opt_key_manager_tip,Abre el gestor para cambiar, crear, renombrar y eliminar espacios de trabajo.
+window_title,Espacios de trabajo
+workspace,Espacio #
+current,ACTUAL
+empty,Vacío
+windows,# ventanas
+missing,(ya no está)
+toast_title,ESPACIO
+manager_desc,Cada espacio de trabajo guarda su propio grupo de contenedores abiertos. Al cambiar se cierra un grupo y el otro se reabre donde lo dejaste.
+button_new,Nuevo espacio
+tip_new,Añade un espacio vacío. Cambia a él y abre los contenedores que debe guardar.
+button_switch,Cambiar
+tip_switch,Cierra las ventanas del espacio actual y abre estas donde estaban.
+tip_delete,Elimina este espacio. Si eliminas el actual, primero pasas a su vecino.
+hint_here,Los contenedores que abras ahora pertenecen a este espacio.
+hint_empty,Vacío. Cambia aquí y abre los contenedores que debe guardar.
+tip_chip,Haz clic para quitar este contenedor del espacio.
+tip_missing,Este contenedor ya no está en tu tienda. Haz clic para olvidarlo.
+toast_panel,CAMBIAR

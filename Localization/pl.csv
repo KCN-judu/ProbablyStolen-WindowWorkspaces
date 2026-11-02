@@ -1,0 +1,29 @@
+# Window Workspaces - Polski (pl)
+opt_snap,Przyciągaj okna
+opt_snap_tip,Przeciągane okna przyciągają się do krawędzi innych okien i ekranu. Przytrzymaj Alt by przeciągać swobodnie.
+opt_grid_snap,Przyciągaj do siatki
+opt_grid_snap_tip,Z dala od krawędzi przeciągane okno wyrównuje się do siatki ekwipunku.
+opt_grid_shown,Pokazuj siatkę podczas przeciągania
+opt_grid_shown_tip,Podczas przeciągania okna pojawia się delikatna siatka.
+opt_key_cycle,Następny obszar roboczy
+opt_key_cycle_tip,Przełącza na następny obszar roboczy. Z Shift na poprzedni.
+opt_key_manager,Menedżer obszarów roboczych
+opt_key_manager_tip,Otwiera menedżera do przełączania, tworzenia, zmiany nazw i usuwania obszarów roboczych.
+window_title,Obszary robocze
+workspace,Obszar #
+current,BIEŻĄCY
+empty,Pusty
+windows,Okna: #
+missing,(brak)
+toast_title,OBSZAR
+manager_desc,Każdy obszar roboczy pamięta własny zestaw otwartych pojemników. Przełączenie zamyka jeden zestaw i otwiera drugi tam gdzie go zostawiłeś.
+button_new,Nowy obszar
+tip_new,Dodaje pusty obszar. Przełącz się na niego i otwórz pojemniki które ma zawierać.
+button_switch,Przełącz
+tip_switch,Zamyka okna bieżącego obszaru i otwiera te tam gdzie były.
+tip_delete,Usuwa ten obszar. Usunięcie bieżącego najpierw przenosi cię do sąsiedniego.
+hint_here,Pojemniki otwarte teraz należą do tego obszaru.
+hint_empty,Pusty. Przełącz się tutaj i otwórz pojemniki które ma zawierać.
+tip_chip,Kliknij by usunąć ten pojemnik z obszaru.
+tip_missing,Tego pojemnika nie ma już w sklepie. Kliknij by go zapomnieć.
+toast_panel,PRZEŁĄCZ

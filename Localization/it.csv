@@ -1,0 +1,29 @@
+# Window Workspaces - Italiano (it)
+opt_snap,Aggancia le finestre
+opt_snap_tip,Le finestre trascinate si agganciano ai bordi delle altre finestre e dello schermo. Tieni premuto Alt per trascinare liberamente.
+opt_grid_snap,Aggancia alla griglia
+opt_grid_snap_tip,Lontano dai bordi una finestra trascinata si allinea alla griglia dell’inventario.
+opt_grid_shown,Mostra la griglia durante il trascinamento
+opt_grid_shown_tip,Appare una griglia leggera mentre trascini una finestra.
+opt_key_cycle,Area di lavoro successiva
+opt_key_cycle_tip,Passa all’area di lavoro successiva. Tieni premuto Maiusc per la precedente.
+opt_key_manager,Gestione aree di lavoro
+opt_key_manager_tip,Apre la gestione per cambiare, creare, rinominare ed eliminare le aree di lavoro.
+window_title,Aree di lavoro
+workspace,Area #
+current,ATTUALE
+empty,Vuota
+windows,# finestre
+missing,(non c’è più)
+toast_title,AREA
+manager_desc,Ogni area di lavoro tiene il proprio insieme di contenitori aperti. Cambiando si chiude un insieme e si riapre l’altro dove l’avevi lasciato.
+button_new,Nuova area
+tip_new,Aggiunge un’area vuota. Passaci e apri i contenitori che deve contenere.
+button_switch,Cambia
+tip_switch,Chiude le finestre dell’area attuale e apre queste dov’erano.
+tip_delete,Elimina quest’area. Eliminando quella attuale passi prima alla vicina.
+hint_here,I contenitori che apri ora appartengono a quest’area.
+hint_empty,Vuota. Passa qui e apri i contenitori che deve contenere.
+tip_chip,Clicca per togliere questo contenitore dall’area.
+tip_missing,Questo contenitore non è più nel tuo negozio. Clicca per dimenticarlo.
+toast_panel,CAMBIA

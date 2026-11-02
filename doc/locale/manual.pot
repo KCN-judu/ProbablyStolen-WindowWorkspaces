@@ -1,0 +1,267 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Probably Stolen Mods documentation\n"
+"Report-Msgid-Bugs-To: https://github.com/KCN-judu/ProbablyStolen-Mods/issues\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: conf.json:summary
+msgid "Windows snap to each other while you drag them, and workspaces switch whole sets of open containers with one key."
+msgstr ""
+
+#: manual/building.md:1
+msgid "Building"
+msgstr ""
+
+#: manual/building.md:4
+msgid "Requirements"
+msgstr ""
+
+#: manual/building.md:6
+msgid "*Probably Stolen*, game version 0.46D. The build compiles against the game's own assemblies in `Probably Stolen_Data/Managed`."
+msgstr ""
+
+#: manual/building.md:7
+msgid "Git Bash or another POSIX shell on Windows."
+msgstr ""
+
+#: manual/building.md:8
+msgid "The Roslyn C# compiler from Visual Studio Build Tools. The C# 5 compiler that ships with Windows cannot read some of the game's types."
+msgstr ""
+
+#: manual/building.md:10
+msgid "Build"
+msgstr ""
+
+#: manual/building.md:17
+msgid "Two environment variables override the defaults:"
+msgstr ""
+
+#: manual/building.md:19
+msgid "Variable"
+msgstr ""
+
+#: manual/building.md:19
+msgid "Default"
+msgstr ""
+
+#: manual/building.md:22
+msgid "the Roslyn `csc.exe` of Visual Studio 18 Build Tools"
+msgstr ""
+
+#: manual/building.md:24
+msgid "Install by hand"
+msgstr ""
+
+#: manual/building.md:26
+msgid "Copy the folder `out/window_workspaces` into the game's `Mods` folder, start the game, and enable the mod in the Mods menu. Mods load when the game starts, so restart after enabling or updating one."
+msgstr ""
+
+#: manual/building.md:28
+msgid "The mod declares no capabilities, so the game enables it without a permission prompt."
+msgstr ""
+
+#: manual/how-it-works.md:1
+msgid "How it works"
+msgstr ""
+
+#: manual/how-it-works.md:3
+#: manual/index.md:7
+msgid "Snapping"
+msgstr ""
+
+#: manual/how-it-works.md:5
+msgid "The game moves a dragged window from its own input loop: each move sets the window to where the drag started plus how far the pointer has travelled since. The mod snaps from `Canvas.willRenderCanvases`, which Unity calls after all of the frame's game logic and right before drawing, so the snapped position is the one on screen."
+msgstr ""
+
+#: manual/how-it-works.md:7
+msgid "Because the game recomputes the position from the drag origin, snapping never accumulates: the pointer's free position is always known, and pulling away from an edge releases the window exactly under the pointer. An edge catches within 6 UI pixels and lets go beyond 10, so a snap holds steady without feeling glued."
+msgstr ""
+
+#: manual/how-it-works.md:9
+msgid "Nothing runs while the mouse button is up. On a press, the visible windows' positions are noted; the first one that moves while the button is held is the dragged window. Edges are gathered once at that point, so each frame of a drag costs a few comparisons per window and allocates nothing."
+msgstr ""
+
+#: manual/how-it-works.md:11
+msgid "The grid is the game's own inventory cell sprite (`Window/machinery`, `cell`), tiled across the screen under an opacity filter, one tile per cell at the window's scale. Grid snapping uses the same cell. The guide lines are the game's white sprite under a colour and opacity filter. A texture pack that restyles these sprites restyles the grid and guides with them."
+msgstr ""
+
+#: manual/how-it-works.md:13
+msgid "Finding windows"
+msgstr ""
+
+#: manual/how-it-works.md:15
+msgid "The game's own list of window roots drops a window as soon as it gets a parent item, so it never holds container windows. The mod keeps its own list from `PixelWindow.Show`, `Hide` and `Destroy`, which costs nothing between those events, and checks `IsVisible` when it reads it. Performance Fixes answers `IsVisible` for windows it hid by switching off their canvas, so a hidden window is never a snap target or part of a workspace."
+msgstr ""
+
+#: manual/how-it-works.md:17
+#: manual/workspaces.md:18
+msgid "Switching"
+msgstr ""
+
+#: manual/how-it-works.md:19
+msgid "Windows open through the game's `ItemMouseDoubleClickHandler.OpenContentAction`, which shows a container's window and then places it from `PlayerStore.contentWindowPositions`. The mod writes the workspace's positions there first and lets the game do the rest, then restores the tab selection with `ApplyContentTabsSelection`. Windows close with `GameItem.CloseContentWindow`. Anything else that hooks those calls, such as Performance Fixes' per-window canvases and fast hiding, applies as usual."
+msgstr ""
+
+#: manual/how-it-works.md:21
+msgid "Opening a full storage window is real work for Unity, so a switch is queued and run over several frames: each frame runs queued steps until 3 ms are spent, always at least one, closing first."
+msgstr ""
+
+#: manual/how-it-works.md:23
+msgid "Storage"
+msgstr ""
+
+#: manual/how-it-works.md:25
+msgid "Workspaces are stored per save slot (`PlayerStore.saveSlotId`) in `PlayerPrefs`, by item id, which is stable within a save. The mod reads the store from its static field rather than `PlayerStore.Instance`, which would create a store at the main menu."
+msgstr ""
+
+#: manual/how-it-works.md:27
+msgid "The manager and the notice"
+msgstr ""
+
+#: manual/how-it-works.md:29
+msgid "The manager is a window of the game's `CustomUIManager`, laid out like the storage-preset manager, with the game's own item chips. The switch notice is a machine `PixelWindow` with the game's radio buttons. Both are drawn entirely with the game's assets."
+msgstr ""
+
+#: manual/index.md:1
+msgid "Window Workspaces"
+msgstr ""
+
+#: manual/index.md:3
+msgid "![Window Workspaces cover](../attachments/cover.png)"
+msgstr ""
+
+#: manual/index.md:5
+msgid "Window Workspaces makes working with many container windows easier. Windows snap into place while you drag them, and workspaces let you keep several sets of open containers and switch between them with one key, like virtual desktops."
+msgstr ""
+
+#: manual/index.md:9
+msgid "Drag a window by its title bar as usual. When one of its edges comes close to the edge of another window or of the screen, it snaps there, and a guide line marks the edge it holds. Pull a little further and it lets go."
+msgstr ""
+
+#: manual/index.md:11
+msgid "Away from any edge, the window lines up with a faint grid the size of one inventory cell, so windows sit on the same grid as the items in them. The grid only shows while you drag."
+msgstr ""
+
+#: manual/index.md:13
+msgid "Hold **Alt** while dragging to move a window freely."
+msgstr ""
+
+#: manual/index.md:15
+#: manual/workspaces.md:1
+msgid "Workspaces"
+msgstr ""
+
+#: manual/index.md:17
+msgid "A workspace is a set of open containers, each with its position and selected tab. You start in one workspace, and everything you open belongs to it."
+msgstr ""
+
+#: manual/index.md:19
+msgid "When you switch to another workspace, the windows of the one you leave are remembered and closed, and the windows of the one you enter open where you left them. A new workspace starts empty: switch to it and open the containers it should hold."
+msgstr ""
+
+#: manual/index.md:21
+msgid "See [Workspaces](workspaces.md) for the manager and the keys."
+msgstr ""
+
+#: manual/index.md:23
+msgid "Settings"
+msgstr ""
+
+#: manual/index.md:25
+msgid "Bind the two keys in the game's options menu, in the key bindings:"
+msgstr ""
+
+#: manual/index.md:27
+msgid "Key"
+msgstr ""
+
+#: manual/index.md:27
+msgid "What it does"
+msgstr ""
+
+#: manual/index.md:29
+msgid "Next workspace"
+msgstr ""
+
+#: manual/index.md:29
+msgid "Switches to the next workspace. Hold Shift for the previous one."
+msgstr ""
+
+#: manual/index.md:30
+msgid "Workspace manager"
+msgstr ""
+
+#: manual/index.md:30
+msgid "Opens the window to switch, create, rename and delete workspaces."
+msgstr ""
+
+#: manual/index.md:32
+msgid "Neither key has a default. The mod's options (the gear in the Mods menu) turn snapping, grid snapping and the grid itself on or off."
+msgstr ""
+
+#: manual/index.md:34
+msgid "Compatibility"
+msgstr ""
+
+#: manual/index.md:36
+msgid "The mod changes nothing in the game's code. It works on its own and together with Performance Fixes, which makes switching back to a workspace nearly instant. It needs no special permissions."
+msgstr ""
+
+#: manual/workspaces.md:3
+msgid "The manager"
+msgstr ""
+
+#: manual/workspaces.md:5
+msgid "Press the key bound to **Workspace manager** to open the manager. It is built like the game's own storage-preset manager."
+msgstr ""
+
+#: manual/workspaces.md:7
+msgid "Each workspace has a row with:"
+msgstr ""
+
+#: manual/workspaces.md:9
+msgid "its name, which you can type over (an unnamed workspace shows as \"Workspace 2\" and so on);"
+msgstr ""
+
+#: manual/workspaces.md:10
+msgid "**Switch**, or **Current** for the workspace you are in;"
+msgstr ""
+
+#: manual/workspaces.md:11
+msgid "the number of windows it holds;"
+msgstr ""
+
+#: manual/workspaces.md:12
+msgid "a cross to delete it."
+msgstr ""
+
+#: manual/workspaces.md:14
+msgid "Below the row, its containers are shown as item chips. Click a chip to take that container out of the workspace; in the workspace you are in, its window closes too."
+msgstr ""
+
+#: manual/workspaces.md:16
+msgid "**New workspace** adds an empty workspace at the end, up to nine. Deleting the workspace you are in first moves you to its neighbour, so its windows close with it. The last workspace cannot be deleted."
+msgstr ""
+
+#: manual/workspaces.md:20
+msgid "Press **Next workspace** to move to the next workspace, and Shift with it to go back. A small window near the top of the screen shows which workspace you are in, with one button per workspace; click one to switch to it."
+msgstr ""
+
+#: manual/workspaces.md:22
+msgid "A switch closes the windows the new workspace does not have and opens the ones it has. Windows open one after another within a few milliseconds per frame, so the game keeps moving while a large set opens."
+msgstr ""
+
+#: manual/workspaces.md:24
+msgid "What is remembered"
+msgstr ""
+
+#: manual/workspaces.md:26
+msgid "For every container: which item it is, where its window was and which tab it showed. Workspaces are kept per save slot, so each save has its own."
+msgstr ""
+
+#: manual/workspaces.md:28
+msgid "A container that is sold or thrown away stays in the list as \"(gone)\" and is skipped when you switch; click its chip to forget it."
+msgstr ""

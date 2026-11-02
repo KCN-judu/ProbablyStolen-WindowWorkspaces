@@ -1,0 +1,79 @@
+[h1]Window Workspaces[/h1]
+Too many container windows? Snap them into place, and keep whole sets of them ready to switch to with one key.
+
+[h2]Snapping[/h2]
+[list]
+[*]Dragged windows snap to the edges of other windows and of the screen. A guide line marks the edge they hold.
+[*]Away from any edge they line up with a faint grid the size of one inventory cell.
+[*]Hold [b]Alt[/b] to drag freely.
+[/list]
+
+[h2]Workspaces[/h2]
+Like virtual desktops: each workspace is a set of open containers. Leave one and its windows are remembered and closed; enter another and its windows open where you left them, on the tab they showed.
+[list]
+[*][b]Next workspace[/b] key: switch to the next workspace, Shift for the previous one.
+[*][b]Workspace manager[/b] key: create, rename, switch and delete workspaces, and take containers out of one. It is built like the game's own storage-preset manager.
+[/list]
+Workspaces are kept per save. A small notice shows which workspace you are in after each switch.
+
+[h2]Light and native[/h2]
+[list]
+[*]Nothing runs while the mouse button is up, and a drag costs a few comparisons per frame.
+[*]A switch opens windows over several frames, so the game keeps moving.
+[*]All of its UI is drawn with the game's own assets, so texture packs apply to it too.
+[*]Works with Performance Fixes, which makes switching back to a workspace nearly instant.
+[/list]
+
+[h2]Setup[/h2]
+Bind [b]Next workspace[/b] and [b]Workspace manager[/b] in the game's options menu. There are no default keys.
+
+In-game text in every language the game supports. Needs no special permissions. Built for game version 0.46D.
+
+[h2]Source and documentation[/h2]
+[list]
+[*][url=https://kcn-judu.github.io/ProbablyStolen-Mods/en/window-workspaces/]Documentation[/url] (English and Chinese)
+[*][url=https://github.com/KCN-judu/ProbablyStolen-WindowWorkspaces]Source code on GitHub[/url], Apache License 2.0
+[*][url=https://github.com/KCN-judu/ProbablyStolen-Mods]All mods by KCN-judu[/url]
+[/list]
+Bug reports and suggestions are welcome on GitHub or in the comments.
+
+[hr][/hr]
+
+[h1]窗口工作区[/h1]
+容器窗口开太多？拖动时自动吸附对齐，还能把整组窗口存成工作区，一个键随时切换。
+
+[h2]吸附对齐[/h2]
+[list]
+[*]拖动窗口时吸附到其他窗口和屏幕的边缘，并用参考线标出吸住的那条边。
+[*]不靠近任何边缘时，窗口会对齐一层浅浅的网格，一格就是一个物品格子的大小。
+[*]按住 [b]Alt[/b] 可以自由拖动。
+[/list]
+
+[h2]工作区[/h2]
+就像虚拟桌面：每个工作区是一组打开的容器。离开时记住并收起它的窗口，进入另一个工作区时，它的窗口会在原来的位置、原来的标签页重新打开。
+[list]
+[*][b]下一个工作区[/b]键：切换到下一个工作区，按住 Shift 切换到上一个。
+[*][b]工作区管理[/b]键：新建、重命名、切换和删除工作区，也可以把容器移出工作区。界面照游戏自带的存储预设管理窗口搭建。
+[/list]
+工作区按存档分别保存。每次切换后，屏幕上会有一个小提示显示当前所在的工作区。
+
+[h2]轻量，原汁原味[/h2]
+[list]
+[*]鼠标没按下时完全不运行，拖动时每帧只做几次比较。
+[*]切换时分几帧打开窗口，游戏不会卡住。
+[*]所有界面都用游戏自带的素材绘制，材质包也会作用在它上面。
+[*]可与性能修复一起使用，切回工作区几乎是瞬间的。
+[/list]
+
+[h2]设置[/h2]
+在游戏设置菜单中绑定 [b]下一个工作区[/b] 和 [b]工作区管理[/b] 两个按键，默认没有绑定。
+
+游戏内文字支持游戏的所有语言。不需要任何特殊权限。适用于游戏版本 0.46D。
+
+[h2]源码与文档[/h2]
+[list]
+[*][url=https://kcn-judu.github.io/ProbablyStolen-Mods/zh-cn/window-workspaces/]中文文档[/url]
+[*][url=https://github.com/KCN-judu/ProbablyStolen-WindowWorkspaces]GitHub 源码[/url]，Apache License 2.0
+[*][url=https://github.com/KCN-judu/ProbablyStolen-Mods]KCN-judu 的全部模组[/url]
+[/list]
+欢迎在 GitHub 或评论区反馈问题和建议。

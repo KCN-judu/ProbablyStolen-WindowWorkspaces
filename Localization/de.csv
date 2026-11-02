@@ -1,0 +1,29 @@
+# Window Workspaces - Deutsch (de)
+opt_snap,Fenster einrasten
+opt_snap_tip,Gezogene Fenster rasten an den Kanten anderer Fenster und des Bildschirms ein. Mit gedrückter Alt-Taste frei ziehen.
+opt_grid_snap,Am Raster einrasten
+opt_grid_snap_tip,Fern von jeder Kante richtet sich ein gezogenes Fenster am Inventarraster aus.
+opt_grid_shown,Raster beim Ziehen anzeigen
+opt_grid_shown_tip,Beim Ziehen eines Fensters erscheint ein schwaches Raster.
+opt_key_cycle,Nächster Arbeitsbereich
+opt_key_cycle_tip,Wechselt zum nächsten Arbeitsbereich. Mit Umschalt zum vorherigen.
+opt_key_manager,Arbeitsbereich-Verwaltung
+opt_key_manager_tip,Öffnet die Verwaltung zum Wechseln, Anlegen, Umbenennen und Löschen von Arbeitsbereichen.
+window_title,Arbeitsbereiche
+workspace,Arbeitsbereich #
+current,AKTUELL
+empty,Leer
+windows,# Fenster
+missing,(weg)
+toast_title,ARBEITSBEREICH
+manager_desc,Jeder Arbeitsbereich behält seine eigenen offenen Behälter. Beim Wechseln schließt sich der eine Satz und der andere öffnet sich dort wieder, wo du ihn gelassen hast.
+button_new,Neuer Arbeitsbereich
+tip_new,Fügt einen leeren Arbeitsbereich hinzu. Wechsle hinein und öffne die Behälter, die er enthalten soll.
+button_switch,Wechseln
+tip_switch,Schließt die Fenster des aktuellen Arbeitsbereichs und öffnet diese an ihren alten Plätzen.
+tip_delete,Löscht diesen Arbeitsbereich. Löschst du den aktuellen, wechselst du zuerst zu seinem Nachbarn.
+hint_here,Behälter, die du jetzt öffnest, gehören zu diesem Arbeitsbereich.
+hint_empty,Leer. Wechsle hierher und öffne die Behälter, die er enthalten soll.
+tip_chip,Klicken, um diesen Behälter aus dem Arbeitsbereich zu nehmen.
+tip_missing,Dieser Behälter ist nicht mehr in deinem Laden. Klicken, um ihn zu vergessen.
+toast_panel,WECHSELN

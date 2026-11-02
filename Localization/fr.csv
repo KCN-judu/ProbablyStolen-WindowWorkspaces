@@ -1,0 +1,29 @@
+# Window Workspaces - Français (fr)
+opt_snap,Aimanter les fenêtres
+opt_snap_tip,Les fenêtres déplacées s’aimantent aux bords des autres fenêtres et de l’écran. Maintenez Alt pour déplacer librement.
+opt_grid_snap,Aimanter à la grille
+opt_grid_snap_tip,Loin de tout bord, une fenêtre déplacée s’aligne sur la grille d’inventaire.
+opt_grid_shown,Afficher la grille pendant le déplacement
+opt_grid_shown_tip,Une grille discrète apparaît pendant le déplacement d’une fenêtre.
+opt_key_cycle,Espace de travail suivant
+opt_key_cycle_tip,Passe à l’espace de travail suivant. Maintenez Maj pour le précédent.
+opt_key_manager,Gestion des espaces de travail
+opt_key_manager_tip,Ouvre la gestion pour changer, créer, renommer et supprimer des espaces de travail.
+window_title,Espaces de travail
+workspace,Espace #
+current,ACTUEL
+empty,Vide
+windows,# fenêtres
+missing,(disparu)
+toast_title,ESPACE
+manager_desc,Chaque espace de travail garde son propre ensemble de conteneurs ouverts. Changer ferme un ensemble et rouvre l’autre là où vous l’aviez laissé.
+button_new,Nouvel espace
+tip_new,Ajoute un espace vide. Passez-y et ouvrez les conteneurs qu’il doit contenir.
+button_switch,Changer
+tip_switch,Ferme les fenêtres de l’espace actuel et ouvre celles-ci là où elles étaient.
+tip_delete,Supprime cet espace. Supprimer celui où vous êtes vous amène d’abord à son voisin.
+hint_here,Les conteneurs que vous ouvrez maintenant appartiennent à cet espace.
+hint_empty,Vide. Passez ici et ouvrez les conteneurs qu’il doit contenir.
+tip_chip,Cliquez pour retirer ce conteneur de l’espace.
+tip_missing,Ce conteneur n’est plus dans votre boutique. Cliquez pour l’oublier.
+toast_panel,CHANGER

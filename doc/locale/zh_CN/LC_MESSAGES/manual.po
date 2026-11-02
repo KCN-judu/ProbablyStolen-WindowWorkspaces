@@ -1,0 +1,267 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Probably Stolen Mods documentation\n"
+"Report-Msgid-Bugs-To: https://github.com/KCN-judu/ProbablyStolen-Mods/issues\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: conf.json:summary
+msgid "Windows snap to each other while you drag them, and workspaces switch whole sets of open containers with one key."
+msgstr "拖动时窗口会互相吸附对齐，工作区一个键就能切换整组打开的容器。"
+
+#: manual/building.md:1
+msgid "Building"
+msgstr "构建"
+
+#: manual/building.md:4
+msgid "Requirements"
+msgstr "需求"
+
+#: manual/building.md:6
+msgid "*Probably Stolen*, game version 0.46D. The build compiles against the game's own assemblies in `Probably Stolen_Data/Managed`."
+msgstr "《深空当铺：可能是偷的》（*Probably Stolen*），游戏版本 0.46D。构建时会引用游戏自带的 `Probably Stolen_Data/Managed` 中的程序集。"
+
+#: manual/building.md:7
+msgid "Git Bash or another POSIX shell on Windows."
+msgstr "Windows 上的 Git Bash 或其他 POSIX shell。"
+
+#: manual/building.md:8
+msgid "The Roslyn C# compiler from Visual Studio Build Tools. The C# 5 compiler that ships with Windows cannot read some of the game's types."
+msgstr "Visual Studio Build Tools 中的 Roslyn C# 编译器。Windows 自带的 C# 5 编译器无法读取游戏的部分类型。"
+
+#: manual/building.md:10
+msgid "Build"
+msgstr "构建"
+
+#: manual/building.md:17
+msgid "Two environment variables override the defaults:"
+msgstr "可以用两个环境变量覆盖默认值："
+
+#: manual/building.md:19
+msgid "Variable"
+msgstr "变量"
+
+#: manual/building.md:19
+msgid "Default"
+msgstr "默认值"
+
+#: manual/building.md:22
+msgid "the Roslyn `csc.exe` of Visual Studio 18 Build Tools"
+msgstr "Visual Studio 18 Build Tools 中 Roslyn 的 `csc.exe`"
+
+#: manual/building.md:24
+msgid "Install by hand"
+msgstr "手动安装"
+
+#: manual/building.md:26
+msgid "Copy the folder `out/window_workspaces` into the game's `Mods` folder, start the game, and enable the mod in the Mods menu. Mods load when the game starts, so restart after enabling or updating one."
+msgstr "把 `out/window_workspaces` 文件夹复制到游戏的 `Mods` 文件夹，启动游戏并在模组菜单中启用该模组。模组在游戏启动时加载，所以启用或更新后需要重启游戏。"
+
+#: manual/building.md:28
+msgid "The mod declares no capabilities, so the game enables it without a permission prompt."
+msgstr "该模组不声明任何权限，游戏启用它时不会弹出权限提示。"
+
+#: manual/how-it-works.md:1
+msgid "How it works"
+msgstr "工作原理"
+
+#: manual/how-it-works.md:3
+#: manual/index.md:7
+msgid "Snapping"
+msgstr "吸附"
+
+#: manual/how-it-works.md:5
+msgid "The game moves a dragged window from its own input loop: each move sets the window to where the drag started plus how far the pointer has travelled since. The mod snaps from `Canvas.willRenderCanvases`, which Unity calls after all of the frame's game logic and right before drawing, so the snapped position is the one on screen."
+msgstr "游戏在自己的输入循环里移动被拖动的窗口：每次移动都把窗口放到拖动起点加上指针移动的距离。模组在 `Canvas.willRenderCanvases` 中执行吸附，Unity 会在这一帧所有游戏逻辑之后、绘制之前调用它，所以屏幕上显示的就是吸附后的位置。"
+
+#: manual/how-it-works.md:7
+msgid "Because the game recomputes the position from the drag origin, snapping never accumulates: the pointer's free position is always known, and pulling away from an edge releases the window exactly under the pointer. An edge catches within 6 UI pixels and lets go beyond 10, so a snap holds steady without feeling glued."
+msgstr "由于游戏每次都从拖动起点重新计算位置，吸附永远不会累积：指针的自由位置始终已知，拖离边缘时窗口会正好回到指针下方。边缘在 6 个界面像素内吸住，超过 10 个才松开，所以吸附稳定又不会粘手。"
+
+#: manual/how-it-works.md:9
+msgid "Nothing runs while the mouse button is up. On a press, the visible windows' positions are noted; the first one that moves while the button is held is the dragged window. Edges are gathered once at that point, so each frame of a drag costs a few comparisons per window and allocates nothing."
+msgstr "鼠标按键松开时什么都不运行。按下时记下各个可见窗口的位置；按住期间第一个移动的窗口就是被拖动的窗口。边缘只在这时收集一次，所以拖动的每一帧只需对每个窗口做几次比较，也不分配内存。"
+
+#: manual/how-it-works.md:11
+msgid "The grid is the game's own inventory cell sprite (`Window/machinery`, `cell`), tiled across the screen under an opacity filter, one tile per cell at the window's scale. Grid snapping uses the same cell. The guide lines are the game's white sprite under a colour and opacity filter. A texture pack that restyles these sprites restyles the grid and guides with them."
+msgstr "网格是游戏自带的物品格子素材（`Window/machinery` 中的 `cell`），在透明度滤镜下平铺满屏幕，按窗口的缩放一格一个物品格子。网格吸附使用同样的格子大小。参考线是游戏的白色素材加上颜色和透明度滤镜。材质包改动这些素材时，网格和参考线也会随之改变。"
+
+#: manual/how-it-works.md:13
+msgid "Finding windows"
+msgstr "找到窗口"
+
+#: manual/how-it-works.md:15
+msgid "The game's own list of window roots drops a window as soon as it gets a parent item, so it never holds container windows. The mod keeps its own list from `PixelWindow.Show`, `Hide` and `Destroy`, which costs nothing between those events, and checks `IsVisible` when it reads it. Performance Fixes answers `IsVisible` for windows it hid by switching off their canvas, so a hidden window is never a snap target or part of a workspace."
+msgstr "游戏自己的窗口根列表会在窗口有了所属物品后把它移除，所以里面从来没有容器窗口。模组根据 `PixelWindow.Show`、`Hide` 和 `Destroy` 维护自己的列表，这些事件之间没有任何开销，读取时再检查 `IsVisible`。性能修复对它通过关闭画布隐藏的窗口会让 `IsVisible` 返回 false，所以隐藏的窗口既不会成为吸附目标，也不会被算进工作区。"
+
+#: manual/how-it-works.md:17
+#: manual/workspaces.md:18
+msgid "Switching"
+msgstr "切换"
+
+#: manual/how-it-works.md:19
+msgid "Windows open through the game's `ItemMouseDoubleClickHandler.OpenContentAction`, which shows a container's window and then places it from `PlayerStore.contentWindowPositions`. The mod writes the workspace's positions there first and lets the game do the rest, then restores the tab selection with `ApplyContentTabsSelection`. Windows close with `GameItem.CloseContentWindow`. Anything else that hooks those calls, such as Performance Fixes' per-window canvases and fast hiding, applies as usual."
+msgstr "窗口通过游戏的 `ItemMouseDoubleClickHandler.OpenContentAction` 打开，它会显示容器的窗口，再按 `PlayerStore.contentWindowPositions` 放置。模组先把工作区记录的位置写进去，剩下的交给游戏，然后用 `ApplyContentTabsSelection` 恢复标签页。窗口用 `GameItem.CloseContentWindow` 关闭。其他挂在这些调用上的功能，比如性能修复的独立画布和瞬间隐藏，都照常生效。"
+
+#: manual/how-it-works.md:21
+msgid "Opening a full storage window is real work for Unity, so a switch is queued and run over several frames: each frame runs queued steps until 3 ms are spent, always at least one, closing first."
+msgstr "打开满载的存储窗口对 Unity 来说是实打实的工作，所以一次切换会排队分几帧执行：每帧执行排队的步骤，直到用掉 3 毫秒（至少执行一步），先关后开。"
+
+#: manual/how-it-works.md:23
+msgid "Storage"
+msgstr "存储"
+
+#: manual/how-it-works.md:25
+msgid "Workspaces are stored per save slot (`PlayerStore.saveSlotId`) in `PlayerPrefs`, by item id, which is stable within a save. The mod reads the store from its static field rather than `PlayerStore.Instance`, which would create a store at the main menu."
+msgstr "工作区按存档槽位（`PlayerStore.saveSlotId`）保存在 `PlayerPrefs` 中，以物品 ID 记录，物品 ID 在同一个存档内是稳定的。模组从店铺对象的静态字段读取它，而不是调用 `PlayerStore.Instance`，因为后者会在主菜单时新建一个店铺对象。"
+
+#: manual/how-it-works.md:27
+msgid "The manager and the notice"
+msgstr "管理窗口和切换提示"
+
+#: manual/how-it-works.md:29
+msgid "The manager is a window of the game's `CustomUIManager`, laid out like the storage-preset manager, with the game's own item chips. The switch notice is a machine `PixelWindow` with the game's radio buttons. Both are drawn entirely with the game's assets."
+msgstr "管理窗口是游戏 `CustomUIManager` 的窗口，布局照存储预设管理窗口，使用游戏自带的物品卡片。切换提示是一个机器 `PixelWindow`，使用游戏的单选按钮。两者都完全用游戏自带的素材绘制。"
+
+#: manual/index.md:1
+msgid "Window Workspaces"
+msgstr "窗口工作区"
+
+#: manual/index.md:3
+msgid "![Window Workspaces cover](../attachments/cover.png)"
+msgstr "![窗口工作区封面](../attachments/cover.png)"
+
+#: manual/index.md:5
+msgid "Window Workspaces makes working with many container windows easier. Windows snap into place while you drag them, and workspaces let you keep several sets of open containers and switch between them with one key, like virtual desktops."
+msgstr "窗口工作区让管理大量容器窗口变得轻松。拖动窗口时会自动吸附到位，工作区则可以保存几组打开的容器，一个键就能在它们之间切换，就像虚拟桌面一样。"
+
+#: manual/index.md:9
+msgid "Drag a window by its title bar as usual. When one of its edges comes close to the edge of another window or of the screen, it snaps there, and a guide line marks the edge it holds. Pull a little further and it lets go."
+msgstr "照常拖动窗口的标题栏。窗口的某条边靠近其他窗口或屏幕的边缘时会吸附上去，并有一条参考线标出吸住的那条边。再往外拖一点就会松开。"
+
+#: manual/index.md:11
+msgid "Away from any edge, the window lines up with a faint grid the size of one inventory cell, so windows sit on the same grid as the items in them. The grid only shows while you drag."
+msgstr "不靠近任何边缘时，窗口会对齐一层浅浅的网格，一格就是一个物品格子的大小，这样窗口和里面的物品在同一套网格上。网格只在拖动时显示。"
+
+#: manual/index.md:13
+msgid "Hold **Alt** while dragging to move a window freely."
+msgstr "拖动时按住 **Alt** 可以自由移动窗口。"
+
+#: manual/index.md:15
+#: manual/workspaces.md:1
+msgid "Workspaces"
+msgstr "工作区"
+
+#: manual/index.md:17
+msgid "A workspace is a set of open containers, each with its position and selected tab. You start in one workspace, and everything you open belongs to it."
+msgstr "工作区是一组打开的容器，每个容器都记着窗口位置和选中的标签页。一开始你在一个工作区里，打开的所有容器都属于它。"
+
+#: manual/index.md:19
+msgid "When you switch to another workspace, the windows of the one you leave are remembered and closed, and the windows of the one you enter open where you left them. A new workspace starts empty: switch to it and open the containers it should hold."
+msgstr "切换到另一个工作区时，离开的工作区会记住并收起它的窗口，进入的工作区会在你离开时的位置打开它的窗口。新工作区一开始是空的：切换过去，再打开它应该包含的容器。"
+
+#: manual/index.md:21
+msgid "See [Workspaces](workspaces.md) for the manager and the keys."
+msgstr "管理窗口和按键见[工作区](workspaces.md)。"
+
+#: manual/index.md:23
+msgid "Settings"
+msgstr "设置"
+
+#: manual/index.md:25
+msgid "Bind the two keys in the game's options menu, in the key bindings:"
+msgstr "在游戏设置菜单的按键绑定中绑定这两个键："
+
+#: manual/index.md:27
+msgid "Key"
+msgstr "按键"
+
+#: manual/index.md:27
+msgid "What it does"
+msgstr "作用"
+
+#: manual/index.md:29
+msgid "Next workspace"
+msgstr "下一个工作区"
+
+#: manual/index.md:29
+msgid "Switches to the next workspace. Hold Shift for the previous one."
+msgstr "切换到下一个工作区。按住 Shift 切换到上一个。"
+
+#: manual/index.md:30
+msgid "Workspace manager"
+msgstr "工作区管理"
+
+#: manual/index.md:30
+msgid "Opens the window to switch, create, rename and delete workspaces."
+msgstr "打开窗口来切换、新建、重命名和删除工作区。"
+
+#: manual/index.md:32
+msgid "Neither key has a default. The mod's options (the gear in the Mods menu) turn snapping, grid snapping and the grid itself on or off."
+msgstr "两个键都没有默认值。模组选项（模组菜单中的齿轮图标）可以开关吸附、网格吸附和网格本身。"
+
+#: manual/index.md:34
+msgid "Compatibility"
+msgstr "兼容性"
+
+#: manual/index.md:36
+msgid "The mod changes nothing in the game's code. It works on its own and together with Performance Fixes, which makes switching back to a workspace nearly instant. It needs no special permissions."
+msgstr "模组不改动游戏的任何代码。它可以单独使用，也可以和性能修复一起用，后者让切回工作区几乎是瞬间的。不需要任何特殊权限。"
+
+#: manual/workspaces.md:3
+msgid "The manager"
+msgstr "管理窗口"
+
+#: manual/workspaces.md:5
+msgid "Press the key bound to **Workspace manager** to open the manager. It is built like the game's own storage-preset manager."
+msgstr "按下绑定为 **工作区管理** 的键打开管理窗口。它照游戏自带的存储预设管理窗口搭建。"
+
+#: manual/workspaces.md:7
+msgid "Each workspace has a row with:"
+msgstr "每个工作区占一行，包括："
+
+#: manual/workspaces.md:9
+msgid "its name, which you can type over (an unnamed workspace shows as \"Workspace 2\" and so on);"
+msgstr "它的名字，可以直接输入修改（没有名字的工作区显示为“工作区 2”等）；"
+
+#: manual/workspaces.md:10
+msgid "**Switch**, or **Current** for the workspace you are in;"
+msgstr "**切换**按钮，所在的工作区则显示**当前**；"
+
+#: manual/workspaces.md:11
+msgid "the number of windows it holds;"
+msgstr "它包含的窗口数；"
+
+#: manual/workspaces.md:12
+msgid "a cross to delete it."
+msgstr "一个用来删除它的叉号。"
+
+#: manual/workspaces.md:14
+msgid "Below the row, its containers are shown as item chips. Click a chip to take that container out of the workspace; in the workspace you are in, its window closes too."
+msgstr "这一行下面以物品卡片显示它的容器。点击卡片可以把那个容器移出工作区；如果是当前所在的工作区，它的窗口也会一起关闭。"
+
+#: manual/workspaces.md:16
+msgid "**New workspace** adds an empty workspace at the end, up to nine. Deleting the workspace you are in first moves you to its neighbour, so its windows close with it. The last workspace cannot be deleted."
+msgstr "**新建工作区**会在末尾添加一个空工作区，最多九个。删除当前所在的工作区时，会先切换到相邻的工作区，它的窗口随之关闭。最后一个工作区不能删除。"
+
+#: manual/workspaces.md:20
+msgid "Press **Next workspace** to move to the next workspace, and Shift with it to go back. A small window near the top of the screen shows which workspace you are in, with one button per workspace; click one to switch to it."
+msgstr "按 **下一个工作区** 切换到下一个工作区，同时按住 Shift 则回到上一个。屏幕上方会出现一个小窗口，显示你所在的工作区，每个工作区一个按钮，点击即可切换。"
+
+#: manual/workspaces.md:22
+msgid "A switch closes the windows the new workspace does not have and opens the ones it has. Windows open one after another within a few milliseconds per frame, so the game keeps moving while a large set opens."
+msgstr "切换时会关闭新工作区没有的窗口，打开它有的窗口。窗口每帧只花几毫秒依次打开，所以打开一大组窗口时游戏也不会停住。"
+
+#: manual/workspaces.md:24
+msgid "What is remembered"
+msgstr "会记住什么"
+
+#: manual/workspaces.md:26
+msgid "For every container: which item it is, where its window was and which tab it showed. Workspaces are kept per save slot, so each save has its own."
+msgstr "对每个容器：它是哪个物品、窗口在哪里、显示的是哪个标签页。工作区按存档槽位分别保存，所以每个存档都有自己的一套。"
+
+#: manual/workspaces.md:28
+msgid "A container that is sold or thrown away stays in the list as \"(gone)\" and is skipped when you switch; click its chip to forget it."
+msgstr "被卖掉或丢弃的容器会以“（已不在）”留在列表里，切换时会跳过；点击它的卡片即可忘记它。"

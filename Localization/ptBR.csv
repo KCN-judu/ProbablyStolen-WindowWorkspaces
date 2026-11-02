@@ -1,0 +1,29 @@
+# Window Workspaces - Português do Brasil (ptBR)
+opt_snap,Encaixar janelas
+opt_snap_tip,Janelas arrastadas se encaixam nas bordas de outras janelas e da tela. Segure Alt para arrastar livremente.
+opt_grid_snap,Encaixar na grade
+opt_grid_snap_tip,Longe de qualquer borda, uma janela arrastada se alinha à grade do inventário.
+opt_grid_shown,Mostrar a grade ao arrastar
+opt_grid_shown_tip,Uma grade suave aparece enquanto você arrasta uma janela.
+opt_key_cycle,Próximo espaço de trabalho
+opt_key_cycle_tip,Muda para o próximo espaço de trabalho. Segure Shift para o anterior.
+opt_key_manager,Gerenciador de espaços de trabalho
+opt_key_manager_tip,Abre o gerenciador para trocar, criar, renomear e excluir espaços de trabalho.
+window_title,Espaços de trabalho
+workspace,Espaço #
+current,ATUAL
+empty,Vazio
+windows,# janelas
+missing,(sumiu)
+toast_title,ESPAÇO
+manager_desc,Cada espaço de trabalho guarda seu próprio conjunto de contêineres abertos. Trocar fecha um conjunto e reabre o outro onde você deixou.
+button_new,Novo espaço
+tip_new,Adiciona um espaço vazio. Mude para ele e abra os contêineres que ele deve guardar.
+button_switch,Trocar
+tip_switch,Fecha as janelas do espaço atual e abre estas onde estavam.
+tip_delete,Exclui este espaço. Excluir o atual leva você primeiro ao vizinho.
+hint_here,Os contêineres que você abrir agora pertencem a este espaço.
+hint_empty,Vazio. Mude para cá e abra os contêineres que ele deve guardar.
+tip_chip,Clique para tirar este contêiner do espaço.
+tip_missing,Este contêiner não está mais na sua loja. Clique para esquecê-lo.
+toast_panel,TROCAR

@@ -1,0 +1,29 @@
+# Window Workspaces - English (en)
+opt_snap,Snap windows
+opt_snap_tip,Dragged windows snap to the edges of other windows and of the screen. Hold Alt to drag freely.
+opt_grid_snap,Snap to the grid
+opt_grid_snap_tip,Away from any edge a dragged window lines up with the inventory grid.
+opt_grid_shown,Show the grid while dragging
+opt_grid_shown_tip,A faint grid appears while a window is being dragged.
+opt_key_cycle,Next workspace
+opt_key_cycle_tip,Switch to the next workspace. Hold Shift for the previous one.
+opt_key_manager,Workspace manager
+opt_key_manager_tip,Open the workspace manager to switch to create to rename and to delete workspaces.
+window_title,Workspaces
+workspace,Workspace #
+current,CURRENT
+empty,Empty
+windows,# windows
+missing,(gone)
+toast_title,WORKSPACE
+manager_desc,Each workspace keeps its own set of open containers. Switching closes one set and reopens the other where you left it.
+button_new,New workspace
+tip_new,Add an empty workspace. Switch to it and open the containers it should hold.
+button_switch,Switch
+tip_switch,Close the windows of the current workspace and open these where they were.
+tip_delete,Delete this workspace. Deleting the one you are in moves you to its neighbour first.
+hint_here,Open containers now and they belong to this workspace.
+hint_empty,Empty. Switch here and open the containers it should hold.
+tip_chip,Click to take this container out of the workspace.
+tip_missing,This container is no longer in your shop. Click to forget it.
+toast_panel,SWITCH
