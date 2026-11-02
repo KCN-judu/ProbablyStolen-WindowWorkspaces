@@ -30,7 +30,6 @@ namespace WindowWorkspaces
         const float Catch = 6f, Release = 10f, FadeTime = 0.12f, GridAlpha = 0.12f, FallbackCell = 8f;
         static readonly Color GuideColor = new Color(0.30f, 0.76f, 0.71f, 0.9f);
 
-        struct Box { public float L, R, B, T; }
 
         static bool pressed;
         static readonly List<PixelWindow> watched = new List<PixelWindow>();
@@ -138,15 +137,15 @@ namespace WindowWorkspaces
             var me = BoxOf(rt);
             float s = Mathf.Max(0.01f, rt.lossyScale.x);
             float dx, dy, lineX, lineY;
-            bool hitX = Best(me, true, s, out dx, out lineX);
-            bool hitY = Best(me, false, s, out dy, out lineY);
+            bool hitX = SnapRule.Best(me, targets, true, stuckX, Catch * s, Release * s, out dx, out lineX);
+            bool hitY = SnapRule.Best(me, targets, false, stuckY, Catch * s, Release * s, out dy, out lineY);
             stuckX = hitX ? lineX : float.NaN;
             stuckY = hitY ? lineY : float.NaN;
             if (GridSnap)
             {
                 float cell = cellPx > 0f ? cellPx : FallbackCell * s;
-                if (!hitX) dx = Mathf.Round(me.L / cell) * cell - me.L;
-                if (!hitY) dy = Mathf.Round(me.T / cell) * cell - me.T;
+                if (!hitX) dx = SnapRule.GridDelta(me.L, cell);
+                if (!hitY) dy = SnapRule.GridDelta(me.T, cell);
             }
 
             if (dx != 0f || dy != 0f)
@@ -157,47 +156,6 @@ namespace WindowWorkspaces
             }
             lastSet = rt.anchoredPosition;
             Guides(hitX, lineX, hitY, lineY, s);
-        }
-
-        // The nearest edge line on one axis: own edge to another window's facing or matching edge, or to a screen
-        // edge. Only windows that overlap on the other axis (within the release distance) count, so a window far
-        // above does not pull sideways. The line held last frame keeps its grip up to the release distance.
-        static bool Best(Box me, bool xAxis, float s, out float delta, out float line)
-        {
-            float bestAbs = float.MaxValue;
-            delta = 0f; line = 0f;
-            float held = xAxis ? stuckX : stuckY;
-            float catchD = Catch * s, releaseD = Release * s;
-            float lo = xAxis ? me.L : me.B, hi = xAxis ? me.R : me.T;
-            for (int i = 0; i < targets.Count; i++)
-            {
-                var t = targets[i];
-                bool screen = i == targets.Count - 1;
-                if (!screen)
-                {
-                    bool overlap = xAxis ? (me.B < t.T + releaseD && me.T > t.B - releaseD)
-                                         : (me.L < t.R + releaseD && me.R > t.L - releaseD);
-                    if (!overlap) continue;
-                }
-                float tlo = xAxis ? t.L : t.B, thi = xAxis ? t.R : t.T;
-                Try(lo, screen ? tlo : thi, held, catchD, releaseD, ref bestAbs, ref delta, ref line);
-                Try(hi, screen ? thi : tlo, held, catchD, releaseD, ref bestAbs, ref delta, ref line);
-                if (!screen)
-                {
-                    Try(lo, tlo, held, catchD, releaseD, ref bestAbs, ref delta, ref line);
-                    Try(hi, thi, held, catchD, releaseD, ref bestAbs, ref delta, ref line);
-                }
-            }
-            return bestAbs < float.MaxValue;
-        }
-
-        static void Try(float edge, float target, float held, float catchD, float releaseD,
-            ref float bestAbs, ref float delta, ref float line)
-        {
-            float d = target - edge, a = Mathf.Abs(d);
-            float limit = !float.IsNaN(held) && Mathf.Abs(target - held) < 0.5f ? releaseD : catchD;
-            if (a > limit || a >= bestAbs) return;
-            bestAbs = a; delta = d; line = target;
         }
 
         static void EndDrag()

@@ -21,6 +21,14 @@ Two environment variables override the defaults:
 | `GAME` | `/d/SteamLibrary/steamapps/common/Probably Stolen` |
 | `CSC` | the Roslyn `csc.exe` of Visual Studio 18 Build Tools |
 
+## Checks
+
+```bash
+tests/run.sh
+```
+
+It runs the mod's decisions headless, and the game's mod scanner on the build when the game is installed.
+
 ## Install by hand
 
 Copy the folder `out/window_workspaces` into the game's `Mods` folder, start the game, and enable the mod in the Mods menu. Mods load when the game starts, so restart after enabling or updating one.

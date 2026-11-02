@@ -27,3 +27,12 @@ Workspaces are stored per save slot (`PlayerStore.saveSlotId`) in `PlayerPrefs`,
 ## The manager and the notice
 
 The manager is a window of the game's `CustomUIManager`, laid out like the storage-preset manager, with the game's own item chips. The switch notice is a machine `PixelWindow` with the game's radio buttons. Both are drawn entirely with the game's assets.
+
+## Tests
+
+The mod's decisions are kept apart from Unity and the game in `src/*.Pure.cs`, which use nothing but plain C#: which edge a dragged window snaps to, how far it moves to the grid, and which workspace comes next. The code that talks to the game only measures windows and passes them on.
+
+`tests/run.sh` runs the checks:
+
+- `tests/PureTest.cs` runs those decisions headless, without the game or Unity: catching an edge within 6 pixels, holding it up to 10, matching edges, screen edges, windows that are too far away, grid rounding and wrapping around the workspaces.
+- `tests/ScanTest.cs` runs the game's own mod scanner on the built DLL, when the game is installed. The result is no capabilities.

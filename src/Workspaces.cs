@@ -156,7 +156,7 @@ namespace WindowWorkspaces
             if (store == null) return;
             int n = spaces.Count;
             if (n < 2) { Toast.Show(current, n); return; }
-            SwitchTo((current + (back ? n - 1 : 1)) % n);
+            SwitchTo(SnapRule.Next(current, n, back));
         }
 
         public static void SwitchTo(int target) { SwitchTo(target, true); }

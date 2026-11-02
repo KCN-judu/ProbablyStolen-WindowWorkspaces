@@ -52,14 +52,22 @@ msgid "the Roslyn `csc.exe` of Visual Studio 18 Build Tools"
 msgstr "Visual Studio 18 Build Tools 中 Roslyn 的 `csc.exe`"
 
 #: manual/building.md:24
+msgid "Checks"
+msgstr "检查"
+
+#: manual/building.md:30
+msgid "It runs the mod's decisions headless, and the game's mod scanner on the build when the game is installed."
+msgstr "它在无界面的环境中运行模组的判定逻辑；如果装了游戏，还会对构建结果运行游戏自带的模组扫描器。"
+
+#: manual/building.md:32
 msgid "Install by hand"
 msgstr "手动安装"
 
-#: manual/building.md:26
+#: manual/building.md:34
 msgid "Copy the folder `out/window_workspaces` into the game's `Mods` folder, start the game, and enable the mod in the Mods menu. Mods load when the game starts, so restart after enabling or updating one."
 msgstr "把 `out/window_workspaces` 文件夹复制到游戏的 `Mods` 文件夹，启动游戏并在模组菜单中启用该模组。模组在游戏启动时加载，所以启用或更新后需要重启游戏。"
 
-#: manual/building.md:28
+#: manual/building.md:36
 msgid "The mod declares no capabilities, so the game enables it without a permission prompt."
 msgstr "该模组不声明任何权限，游戏启用它时不会弹出权限提示。"
 
@@ -124,6 +132,26 @@ msgstr "管理窗口和切换提示"
 #: manual/how-it-works.md:29
 msgid "The manager is a window of the game's `CustomUIManager`, laid out like the storage-preset manager, with the game's own item chips. The switch notice is a machine `PixelWindow` with the game's radio buttons. Both are drawn entirely with the game's assets."
 msgstr "管理窗口是游戏 `CustomUIManager` 的窗口，布局照存储预设管理窗口，使用游戏自带的物品卡片。切换提示是一个机器 `PixelWindow`，使用游戏的单选按钮。两者都完全用游戏自带的素材绘制。"
+
+#: manual/how-it-works.md:31
+msgid "Tests"
+msgstr "测试"
+
+#: manual/how-it-works.md:33
+msgid "The mod's decisions are kept apart from Unity and the game in `src/*.Pure.cs`, which use nothing but plain C#: which edge a dragged window snaps to, how far it moves to the grid, and which workspace comes next. The code that talks to the game only measures windows and passes them on."
+msgstr "模组的判定逻辑与 Unity 和游戏分开，放在 `src/*.Pure.cs` 中，只使用纯 C#：拖动的窗口吸附到哪条边、对齐网格要移动多远、下一个工作区是哪个。与游戏交互的代码只负责测量窗口，再把结果交给这些判定。"
+
+#: manual/how-it-works.md:35
+msgid "`tests/run.sh` runs the checks:"
+msgstr "`tests/run.sh` 运行这些检查："
+
+#: manual/how-it-works.md:37
+msgid "`tests/PureTest.cs` runs those decisions headless, without the game or Unity: catching an edge within 6 pixels, holding it up to 10, matching edges, screen edges, windows that are too far away, grid rounding and wrapping around the workspaces."
+msgstr "`tests/PureTest.cs` 在不需要游戏或 Unity 的环境中检验这些判定：6 像素内吸附边缘、10 像素内保持吸附、对齐同侧边缘、屏幕边缘、离得太远的窗口、网格取整，以及工作区的循环切换。"
+
+#: manual/how-it-works.md:38
+msgid "`tests/ScanTest.cs` runs the game's own mod scanner on the built DLL, when the game is installed. The result is no capabilities."
+msgstr "装了游戏时，`tests/ScanTest.cs` 对构建出的 DLL 运行游戏自带的模组扫描器，结果是不需要任何权限。"
 
 #: manual/index.md:1
 msgid "Window Workspaces"
