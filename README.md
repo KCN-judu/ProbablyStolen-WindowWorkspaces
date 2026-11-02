@@ -10,7 +10,7 @@ Part of the [Probably Stolen mods collection](https://github.com/KCN-judu/Probab
 
 ## Install
 
-Copy the folder from a [release](https://github.com/KCN-judu/ProbablyStolen-WindowWorkspaces/releases) into the game's `Mods` folder. Then enable the mod in the game's Mods menu, restart the game, and bind its two keys in the options menu.
+Subscribe on the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3832565070), or copy the folder from a [release](https://github.com/KCN-judu/ProbablyStolen-WindowWorkspaces/releases) into the game's `Mods` folder. Then enable the mod in the game's Mods menu, restart the game, and bind its two keys in the options menu.
 
 ## Build
 
