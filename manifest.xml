@@ -3,7 +3,7 @@
   <ID>window_workspaces</ID>
   <Name>Window Workspaces</Name>
   <Author>KCN-judu</Author>
-  <ModVersion>1.0.0</ModVersion>
+  <ModVersion>1.0.1</ModVersion>
   <Description>Windows snap to each other and to the screen edges while you drag them, over a faint grid. Keep up to four workspaces of open containers and switch between them with one key, like virtual desktops: each workspace reopens its windows where you left them. Bind its keys in the game's options menu.</Description>
   <GameVersions>
     <Version>0.46D</Version>

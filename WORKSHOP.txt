@@ -1,6 +1,11 @@
 [h1]Window Workspaces[/h1]
 Too many container windows? Snap them into place, and keep whole sets of them ready to switch to with one key.
 
+[h2]What's new in 1.0.1[/h2]
+[list]
+[*]Leaving the store (back to the main menu, say) no longer keeps it in memory, so later loads in the same session don't start with the old store still loaded. Your workspaces are kept.
+[/list]
+
 [h2]Snapping[/h2]
 [list]
 [*]Dragged windows snap to the edges of other windows and of the screen. A guide line marks the edge they hold.
@@ -41,6 +46,11 @@ Bug reports and suggestions are welcome on GitHub or in the comments.
 
 [h1]窗口工作区[/h1]
 容器窗口开太多？拖动时自动吸附对齐，还能把整组窗口存成工作区，一个键随时切换。
+
+[h2]1.0.1 新内容[/h2]
+[list]
+[*]离开商店（例如回到主菜单）后不再把它留在内存里，同一局之后的读档不会带着旧商店开始。工作区会保留。
+[/list]
 
 [h2]吸附对齐[/h2]
 [list]

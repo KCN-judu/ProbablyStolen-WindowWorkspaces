@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1
+
+- Leaving the store (back to the main menu, say) no longer keeps it in memory. The mod held on to the store's windows after leaving it, which kept every item and inventory of that store alive and made later loads in the same session slower.
+
 ## 1.0.0 (pre-release)
 
 First public release.
