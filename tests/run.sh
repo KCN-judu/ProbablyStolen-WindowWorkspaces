@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Runs the checks. Always: the mod's decisions (src/*.Pure.cs), headless, with no game or Unity assembly.
+# Runs the checks. Always: the mod's decisions (src/*.Pure.cs), each tests/<Name>Test.cs headless, with no game or Unity assembly.
 # With the game installed: also the game's own mod scanner on the built mod (run ./build.sh first).
 #   GAME=/d/SteamLibrary/steamapps/common/"Probably Stolen" CSC=/path/to/csc.exe tests/run.sh
 set -euo pipefail
@@ -10,11 +10,16 @@ M="$GAME/Probably Stolen_Data/Managed"
 # The .NET Framework csc reads "/" as an option prefix and fails on long paths: work in a short folder.
 WORK="${TEMP:-/tmp}/ww_tests"
 rm -rf "${WORK:?}" && mkdir -p "$WORK"
-cp tests/PureTest.cs tests/ScanTest.cs src/*.Pure.cs "$WORK/"
+cp tests/*Test.cs src/*.Pure.cs "$WORK/"
 
 pure=()
 for f in src/*.Pure.cs; do pure+=("$(basename "$f")"); done
-( cd "$WORK" && "$CSC" -nologo -out:PureTest.exe PureTest.cs "${pure[@]}" >/dev/null && ./PureTest.exe | grep -v '^ok' )
+for t in tests/*Test.cs; do
+  name=$(basename "$t" .cs)
+  [ "$name" = ScanTest ] && continue
+  echo "== $name"
+  ( cd "$WORK" && "$CSC" -nologo "-out:$name.exe" "$name.cs" "${pure[@]}" >/dev/null && "./$name.exe" | grep -v '^ok' )
+done
 
 if [ -f "$M/Assembly-CSharp.dll" ] && [ -f out/window_workspaces/WindowWorkspaces.dll ]; then
   refs=()

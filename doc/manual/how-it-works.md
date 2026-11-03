@@ -28,11 +28,16 @@ Workspaces are stored per save slot (`PlayerStore.saveSlotId`) in `PlayerPrefs`,
 
 The manager is a window of the game's `CustomUIManager`, laid out like the storage-preset manager, with the game's own item chips. The switch notice is a machine `PixelWindow` with the game's radio buttons. Both are drawn entirely with the game's assets.
 
+## Leaving the store
+
+A store's items, inventories and windows all point at each other, so a single one kept by a mod keeps the whole store in memory after the player leaves it. The windows destroyed with the store's scene never go through `PixelWindow.Destroy`, so the mod lets go of them itself: when a scene other than the store (`InventoryScene`) replaces it, it takes the destroyed windows out of its list of open windows, drops the switch notice's window (built again on the next switch), closes the manager, empties any queued switch steps and forgets the windows noted for snapping. Player.log gets one line with how many windows were released. Nothing changes inside the store.
+
 ## Tests
 
-The mod's decisions are kept apart from Unity and the game in `src/*.Pure.cs`, which use nothing but plain C#: which edge a dragged window snaps to, how far it moves to the grid, and which workspace comes next. The code that talks to the game only measures windows and passes them on.
+The mod's decisions are kept apart from Unity and the game in `src/*.Pure.cs`, which use nothing but plain C#: which edge a dragged window snaps to, how far it moves to the grid, which workspace comes next, and when the store has been left. The code that talks to the game only measures windows and passes them on.
 
 `tests/run.sh` runs the checks:
 
 - `tests/PureTest.cs` runs those decisions headless, without the game or Unity: catching an edge within 6 pixels, holding it up to 10, matching edges, screen edges, windows that are too far away, grid rounding and wrapping around the workspaces.
+- `tests/StoreExitTest.cs` checks when the store counts as left: only for the first scene that replaces it, never for additive scenes or the main menu at start.
 - `tests/ScanTest.cs` runs the game's own mod scanner on the built DLL, when the game is installed. The result is no capabilities.

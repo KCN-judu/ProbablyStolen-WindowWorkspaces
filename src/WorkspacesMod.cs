@@ -37,6 +37,7 @@ namespace WindowWorkspaces
             ReadConfig();
             try { Windows.Patch(); }
             catch (Exception e) { Debug.LogWarning(Tag + "could not follow windows: " + e); }
+            StoreRelease.Patch();
             Canvas.willRenderCanvases -= BeforeRender;
             Canvas.willRenderCanvases += BeforeRender;
             if (ticker == null)
@@ -52,6 +53,7 @@ namespace WindowWorkspaces
         {
             Canvas.willRenderCanvases -= BeforeRender;
             Windows.Unpatch();
+            StoreRelease.Unpatch();
             if (ticker != null) { UnityEngine.Object.Destroy(ticker); ticker = null; }
             Snap.Destroy();
             Manager.Close();

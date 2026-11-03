@@ -134,22 +134,34 @@ msgid "The manager is a window of the game's `CustomUIManager`, laid out like th
 msgstr "管理窗口是游戏 `CustomUIManager` 的窗口，布局照存储预设管理窗口，使用游戏自带的物品卡片。切换提示是一个机器 `PixelWindow`，使用游戏的单选按钮。两者都完全用游戏自带的素材绘制。"
 
 #: manual/how-it-works.md:31
+msgid "Leaving the store"
+msgstr "离开商店"
+
+#: manual/how-it-works.md:33
+msgid "A store's items, inventories and windows all point at each other, so a single one kept by a mod keeps the whole store in memory after the player leaves it. The windows destroyed with the store's scene never go through `PixelWindow.Destroy`, so the mod lets go of them itself: when a scene other than the store (`InventoryScene`) replaces it, it takes the destroyed windows out of its list of open windows, drops the switch notice's window (built again on the next switch), closes the manager, empties any queued switch steps and forgets the windows noted for snapping. Player.log gets one line with how many windows were released. Nothing changes inside the store."
+msgstr "商店里的物品、库存和窗口彼此引用，所以只要模组留住其中一个，玩家离开商店后整个商店都会留在内存里。随商店场景一起销毁的窗口不会经过 `PixelWindow.Destroy`，所以模组自己放开它们：当商店（`InventoryScene`）被其他场景取代时，模组把已销毁的窗口移出它的已打开窗口列表，丢掉切换提示的窗口（下次切换时重新创建），关闭管理窗口，清空排队中的切换步骤，并忘掉为吸附记下的窗口。Player.log 会写一行，记录放开了多少个窗口。商店内的行为没有任何变化。"
+
+#: manual/how-it-works.md:35
 msgid "Tests"
 msgstr "测试"
 
-#: manual/how-it-works.md:33
-msgid "The mod's decisions are kept apart from Unity and the game in `src/*.Pure.cs`, which use nothing but plain C#: which edge a dragged window snaps to, how far it moves to the grid, and which workspace comes next. The code that talks to the game only measures windows and passes them on."
-msgstr "模组的判定逻辑与 Unity 和游戏分开，放在 `src/*.Pure.cs` 中，只使用纯 C#：拖动的窗口吸附到哪条边、对齐网格要移动多远、下一个工作区是哪个。与游戏交互的代码只负责测量窗口，再把结果交给这些判定。"
+#: manual/how-it-works.md:37
+msgid "The mod's decisions are kept apart from Unity and the game in `src/*.Pure.cs`, which use nothing but plain C#: which edge a dragged window snaps to, how far it moves to the grid, which workspace comes next, and when the store has been left. The code that talks to the game only measures windows and passes them on."
+msgstr "模组的判定逻辑与 Unity 和游戏分开，放在 `src/*.Pure.cs` 中，只使用纯 C#：拖动的窗口吸附到哪条边、对齐网格要移动多远、下一个工作区是哪个，以及什么时候算离开了商店。与游戏交互的代码只负责测量窗口，再把结果交给这些判定。"
 
-#: manual/how-it-works.md:35
+#: manual/how-it-works.md:39
 msgid "`tests/run.sh` runs the checks:"
 msgstr "`tests/run.sh` 运行这些检查："
 
-#: manual/how-it-works.md:37
+#: manual/how-it-works.md:41
 msgid "`tests/PureTest.cs` runs those decisions headless, without the game or Unity: catching an edge within 6 pixels, holding it up to 10, matching edges, screen edges, windows that are too far away, grid rounding and wrapping around the workspaces."
 msgstr "`tests/PureTest.cs` 在不需要游戏或 Unity 的环境中检验这些判定：6 像素内吸附边缘、10 像素内保持吸附、对齐同侧边缘、屏幕边缘、离得太远的窗口、网格取整，以及工作区的循环切换。"
 
-#: manual/how-it-works.md:38
+#: manual/how-it-works.md:42
+msgid "`tests/StoreExitTest.cs` checks when the store counts as left: only for the first scene that replaces it, never for additive scenes or the main menu at start."
+msgstr "`tests/StoreExitTest.cs` 检验什么时候算离开商店：只在第一个取代商店的场景时算，叠加加载的场景和启动时的主菜单都不算。"
+
+#: manual/how-it-works.md:43
 msgid "`tests/ScanTest.cs` runs the game's own mod scanner on the built DLL, when the game is installed. The result is no capabilities."
 msgstr "装了游戏时，`tests/ScanTest.cs` 对构建出的 DLL 运行游戏自带的模组扫描器，结果是不需要任何权限。"
 

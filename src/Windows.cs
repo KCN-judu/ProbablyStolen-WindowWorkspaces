@@ -59,13 +59,19 @@ namespace WindowWorkspaces
             for (int i = open.Count - 1; i >= 0; i--)
             {
                 var w = open[i];
-                bool alive;
-                try { alive = w != null && w.handler != null && w.rectTransform != null; }
-                catch (Exception) { alive = false; }
-                if (!alive) { open.RemoveAt(i); continue; }
+                if (!Alive(w)) { open.RemoveAt(i); continue; }
                 if (w.IsVisible()) into.Add(w);
             }
             into.Reverse();
+        }
+
+        // Takes out the windows destroyed with a scene, which never go through Destroy. Returns how many.
+        internal static int Forget() { return open.RemoveAll(w => !Alive(w)); }
+
+        static bool Alive(PixelWindow w)
+        {
+            try { return w != null && w.handler != null && w.rectTransform != null; }
+            catch (Exception) { return false; }
         }
     }
 }

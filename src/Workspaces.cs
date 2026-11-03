@@ -84,6 +84,14 @@ namespace WindowWorkspaces
             current = 0;
         }
 
+        // After leaving the store: queued steps and the last visible windows point at its items and windows.
+        internal static void Forget()
+        {
+            Flush();
+            queue.Clear();
+            visible.Clear();
+        }
+
         // Follows the loaded save: a new store or slot means other items and other workspaces.
         internal static void Track()
         {

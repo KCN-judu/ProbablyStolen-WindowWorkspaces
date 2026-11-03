@@ -90,5 +90,11 @@ namespace WindowWorkspaces
             if (IsOpen) window.Hide();
             window = null; panel = null; row = null;
         }
+
+        // After leaving the store: its window went with the scene, so it is only let go of.
+        internal static void Forget()
+        {
+            window = null; panel = null; row = null;
+        }
     }
 }

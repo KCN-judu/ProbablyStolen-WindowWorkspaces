@@ -134,22 +134,34 @@ msgid "The manager is a window of the game's `CustomUIManager`, laid out like th
 msgstr ""
 
 #: manual/how-it-works.md:31
-msgid "Tests"
+msgid "Leaving the store"
 msgstr ""
 
 #: manual/how-it-works.md:33
-msgid "The mod's decisions are kept apart from Unity and the game in `src/*.Pure.cs`, which use nothing but plain C#: which edge a dragged window snaps to, how far it moves to the grid, and which workspace comes next. The code that talks to the game only measures windows and passes them on."
+msgid "A store's items, inventories and windows all point at each other, so a single one kept by a mod keeps the whole store in memory after the player leaves it. The windows destroyed with the store's scene never go through `PixelWindow.Destroy`, so the mod lets go of them itself: when a scene other than the store (`InventoryScene`) replaces it, it takes the destroyed windows out of its list of open windows, drops the switch notice's window (built again on the next switch), closes the manager, empties any queued switch steps and forgets the windows noted for snapping. Player.log gets one line with how many windows were released. Nothing changes inside the store."
 msgstr ""
 
 #: manual/how-it-works.md:35
-msgid "`tests/run.sh` runs the checks:"
+msgid "Tests"
 msgstr ""
 
 #: manual/how-it-works.md:37
+msgid "The mod's decisions are kept apart from Unity and the game in `src/*.Pure.cs`, which use nothing but plain C#: which edge a dragged window snaps to, how far it moves to the grid, which workspace comes next, and when the store has been left. The code that talks to the game only measures windows and passes them on."
+msgstr ""
+
+#: manual/how-it-works.md:39
+msgid "`tests/run.sh` runs the checks:"
+msgstr ""
+
+#: manual/how-it-works.md:41
 msgid "`tests/PureTest.cs` runs those decisions headless, without the game or Unity: catching an edge within 6 pixels, holding it up to 10, matching edges, screen edges, windows that are too far away, grid rounding and wrapping around the workspaces."
 msgstr ""
 
-#: manual/how-it-works.md:38
+#: manual/how-it-works.md:42
+msgid "`tests/StoreExitTest.cs` checks when the store counts as left: only for the first scene that replaces it, never for additive scenes or the main menu at start."
+msgstr ""
+
+#: manual/how-it-works.md:43
 msgid "`tests/ScanTest.cs` runs the game's own mod scanner on the built DLL, when the game is installed. The result is no capabilities."
 msgstr ""
 
