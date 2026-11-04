@@ -2,7 +2,7 @@
 
 ![Window Workspaces](preview.png)
 
-A mod for *Probably Stolen*. Windows snap to each other, to the screen edges and to the inventory grid while you drag them, and workspaces keep several sets of open containers that you switch between with one key, like virtual desktops. Two keys cover everything: the next workspace and the workspace manager.
+A mod for *Probably Stolen*. Windows snap to each other, to the screen edges and to the inventory grid while you drag them. Workspaces keep several sets of open containers, like virtual desktops, and one key switches between them. The mod has two keys: next workspace and workspace manager.
 
 **Documentation:** <https://kcn-judu.github.io/ProbablyStolen-Mods/en/window-workspaces/> ([简体中文](https://kcn-judu.github.io/ProbablyStolen-Mods/zh-cn/window-workspaces/))
 

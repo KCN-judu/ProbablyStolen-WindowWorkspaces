@@ -4,9 +4,9 @@
 
 The game moves a dragged window from its own input loop: each move sets the window to where the drag started plus how far the pointer has travelled since. The mod snaps from `Canvas.willRenderCanvases`, which Unity calls after all of the frame's game logic and right before drawing, so the snapped position is the one on screen.
 
-Because the game recomputes the position from the drag origin, snapping never accumulates: the pointer's free position is always known, and pulling away from an edge releases the window exactly under the pointer. An edge catches within 6 UI pixels and lets go beyond 10, so a snap holds steady without feeling glued.
+Because the game recomputes the position from the drag origin, snapping never accumulates: the pointer's free position is always known, and pulling away from an edge releases the window exactly under the pointer. An edge catches within 6 UI pixels and lets go beyond 10, so a snap holds without sticking.
 
-Nothing runs while the mouse button is up. On a press, the visible windows' positions are noted; the first one that moves while the button is held is the dragged window. Edges are gathered once at that point, so each frame of a drag costs a few comparisons per window and allocates nothing.
+Snapping does nothing while the mouse button is up. On a press, the visible windows' positions are noted; the first one that moves while the button is held is the dragged window. Edges are gathered once at that point, so each frame of a drag costs a few comparisons per window and allocates nothing.
 
 The grid is the game's own inventory cell sprite (`Window/machinery`, `cell`), tiled across the screen under an opacity filter, one tile per cell at the window's scale. Grid snapping uses the same cell. The guide lines are the game's white sprite under a colour and opacity filter. A texture pack that restyles these sprites restyles the grid and guides with them.
 

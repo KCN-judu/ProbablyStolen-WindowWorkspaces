@@ -8,7 +8,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: conf.json:summary
-msgid "Windows snap to each other while you drag them, and workspaces switch whole sets of open containers with one key."
+msgid "Windows snap to each other while you drag them. Workspaces keep sets of open containers and switch between them with one key."
 msgstr ""
 
 #: manual/building.md:1
@@ -85,11 +85,11 @@ msgid "The game moves a dragged window from its own input loop: each move sets t
 msgstr ""
 
 #: manual/how-it-works.md:7
-msgid "Because the game recomputes the position from the drag origin, snapping never accumulates: the pointer's free position is always known, and pulling away from an edge releases the window exactly under the pointer. An edge catches within 6 UI pixels and lets go beyond 10, so a snap holds steady without feeling glued."
+msgid "Because the game recomputes the position from the drag origin, snapping never accumulates: the pointer's free position is always known, and pulling away from an edge releases the window exactly under the pointer. An edge catches within 6 UI pixels and lets go beyond 10, so a snap holds without sticking."
 msgstr ""
 
 #: manual/how-it-works.md:9
-msgid "Nothing runs while the mouse button is up. On a press, the visible windows' positions are noted; the first one that moves while the button is held is the dragged window. Edges are gathered once at that point, so each frame of a drag costs a few comparisons per window and allocates nothing."
+msgid "Snapping does nothing while the mouse button is up. On a press, the visible windows' positions are noted; the first one that moves while the button is held is the dragged window. Edges are gathered once at that point, so each frame of a drag costs a few comparisons per window and allocates nothing."
 msgstr ""
 
 #: manual/how-it-works.md:11
@@ -174,7 +174,7 @@ msgid "![Window Workspaces cover](../attachments/cover.png)"
 msgstr ""
 
 #: manual/index.md:5
-msgid "Window Workspaces makes working with many container windows easier. Windows snap into place while you drag them, and workspaces let you keep several sets of open containers and switch between them with one key, like virtual desktops."
+msgid "Window Workspaces adds two things for container windows. Windows snap into place while you drag them. Workspaces keep several sets of open containers, and one key switches between them, like virtual desktops."
 msgstr ""
 
 #: manual/index.md:9
@@ -199,7 +199,7 @@ msgid "A workspace is a set of open containers, each with its position and selec
 msgstr ""
 
 #: manual/index.md:19
-msgid "When you switch to another workspace, the windows of the one you leave are remembered and closed, and the windows of the one you enter open where you left them. A new workspace starts empty: switch to it and open the containers it should hold."
+msgid "When you switch to another workspace, the windows of the one you leave are remembered and closed, and the windows of the one you enter open where you left them. A new workspace starts empty. Switch to it and open the containers it should hold."
 msgstr ""
 
 #: manual/index.md:21
@@ -239,7 +239,7 @@ msgid "Opens the window to switch, create, rename and delete workspaces."
 msgstr ""
 
 #: manual/index.md:32
-msgid "Neither key has a default. The mod's options (the gear in the Mods menu) turn snapping, grid snapping and the grid itself on or off."
+msgid "Neither key has a default. The mod's options (the gear in the Mods menu) turn **Snap windows**, **Snap to the grid** and **Show the grid while dragging** on or off. All three are on by default."
 msgstr ""
 
 #: manual/index.md:34
@@ -247,7 +247,7 @@ msgid "Compatibility"
 msgstr ""
 
 #: manual/index.md:36
-msgid "The mod changes nothing in the game's code. It works on its own and together with Performance Fixes, which makes switching back to a workspace nearly instant. It needs no special permissions."
+msgid "The mod hooks only `PixelWindow.Show`, `Hide` and `Destroy`, to keep a list of open windows, and changes no game behaviour. It works on its own and together with Performance Fixes, which makes switching back to a workspace nearly instant. It needs no special permissions."
 msgstr ""
 
 #: manual/workspaces.md:3

@@ -1,9 +1,9 @@
 [h1]Window Workspaces[/h1]
-Too many container windows? Snap them into place, and keep whole sets of them ready to switch to with one key.
+Windows snap into place while you drag them. Workspaces keep sets of open container windows, and one key switches between them.
 
 [h2]What's new in 1.0.1[/h2]
 [list]
-[*]Leaving the store (back to the main menu, say) no longer keeps it in memory, so later loads in the same session don't start with the old store still loaded. Your workspaces are kept.
+[*]Leaving the store (back to the main menu, say) no longer keeps it in memory, so a later load in the same session does not start with the old store still loaded. Your workspaces are kept.
 [/list]
 
 [h2]Snapping[/h2]
@@ -17,22 +17,22 @@ Too many container windows? Snap them into place, and keep whole sets of them re
 Like virtual desktops: each workspace is a set of open containers. Leave one and its windows are remembered and closed; enter another and its windows open where you left them, on the tab they showed.
 [list]
 [*][b]Next workspace[/b] key: switch to the next workspace, Shift for the previous one.
-[*][b]Workspace manager[/b] key: create, rename, switch and delete workspaces, and take containers out of one. It is built like the game's own storage-preset manager.
+[*][b]Workspace manager[/b] key: create, rename, switch and delete workspaces, and take containers out of one. You can have up to nine. It is built like the game's own storage-preset manager.
 [/list]
 Workspaces are kept per save. A small notice shows which workspace you are in after each switch.
 
-[h2]Light and native[/h2]
+[h2]Performance and looks[/h2]
 [list]
-[*]Nothing runs while the mouse button is up, and a drag costs a few comparisons per frame.
-[*]A switch opens windows over several frames, so the game keeps moving.
-[*]All of its UI is drawn with the game's own assets, so texture packs apply to it too.
+[*]Snapping does nothing while the mouse button is up, and a drag costs a few comparisons per frame.
+[*]A switch opens windows over several frames, about 3 ms per frame, so the game keeps moving.
+[*]The mod's windows, grid and guide lines use the game's own sprites, so texture packs restyle them.
 [*]Works with Performance Fixes, which makes switching back to a workspace nearly instant.
 [/list]
 
 [h2]Setup[/h2]
 Bind [b]Next workspace[/b] and [b]Workspace manager[/b] in the game's options menu. There are no default keys.
 
-In-game text in every language the game supports. Needs no special permissions. Built for game version 0.46D.
+In-game text is available in every language the game supports. The mod needs no special permissions. Built for game version 0.46D.
 
 [h2]Source and documentation[/h2]
 [list]
@@ -45,40 +45,40 @@ Bug reports and suggestions are welcome on GitHub or in the comments.
 [hr][/hr]
 
 [h1]窗口工作区[/h1]
-容器窗口开太多？拖动时自动吸附对齐，还能把整组窗口存成工作区，一个键随时切换。
+拖动窗口时，窗口会自动吸附到位。工作区保存几组打开的容器窗口，一个键就能在它们之间切换。
 
 [h2]1.0.1 新内容[/h2]
 [list]
-[*]离开商店（例如回到主菜单）后不再把它留在内存里，同一局之后的读档不会带着旧商店开始。工作区会保留。
+[*]离开商店（比如回到主菜单）后，模组不再把商店留在内存里，同一局里之后读档时，旧商店不会还占着内存。工作区照常保留。
 [/list]
 
-[h2]吸附对齐[/h2]
+[h2]吸附[/h2]
 [list]
-[*]拖动窗口时吸附到其他窗口和屏幕的边缘，并用参考线标出吸住的那条边。
-[*]不靠近任何边缘时，窗口会对齐一层浅浅的网格，一格就是一个物品格子的大小。
+[*]拖动窗口时，窗口会吸附到其他窗口和屏幕的边缘，并用一条参考线标出吸住的那条边。
+[*]不靠近任何边缘时，窗口会对齐一层浅浅的网格，一格就是一个物品格子。
 [*]按住 [b]Alt[/b] 可以自由拖动。
 [/list]
 
 [h2]工作区[/h2]
-就像虚拟桌面：每个工作区是一组打开的容器。离开时记住并收起它的窗口，进入另一个工作区时，它的窗口会在原来的位置、原来的标签页重新打开。
+就像虚拟桌面：每个工作区是一组打开的容器。离开工作区时，模组记住它的窗口并关掉；进入另一个工作区时，那里的窗口会在原来的位置、原来的标签页重新打开。
 [list]
-[*][b]下一个工作区[/b]键：切换到下一个工作区，按住 Shift 切换到上一个。
-[*][b]工作区管理[/b]键：新建、重命名、切换和删除工作区，也可以把容器移出工作区。界面照游戏自带的存储预设管理窗口搭建。
+[*][b]下一个工作区[/b]键：切换到下一个工作区，按住 Shift 再按则回到上一个。
+[*][b]工作区管理[/b]键：新建、重命名、切换和删除工作区，也能把容器移出工作区。最多九个工作区。管理窗口照游戏自带的存储预设管理窗口搭建。
 [/list]
-工作区按存档分别保存。每次切换后，屏幕上会有一个小提示显示当前所在的工作区。
+工作区按存档分别保存。每次切换后，屏幕上会弹出一个小提示，显示你在哪个工作区。
 
-[h2]轻量，原汁原味[/h2]
+[h2]性能和外观[/h2]
 [list]
-[*]鼠标没按下时完全不运行，拖动时每帧只做几次比较。
-[*]切换时分几帧打开窗口，游戏不会卡住。
-[*]所有界面都用游戏自带的素材绘制，材质包也会作用在它上面。
-[*]可与性能修复一起使用，切回工作区几乎是瞬间的。
+[*]松开鼠标键时，吸附什么都不做；拖动时每帧只做几次比较。
+[*]切换时窗口分几帧打开，每帧约 3 毫秒，游戏不会卡住。
+[*]模组的窗口、网格和参考线都用游戏自带的素材，材质包会改变它们的样子。
+[*]可以和性能修复一起用，切回工作区几乎瞬间完成。
 [/list]
 
 [h2]设置[/h2]
-在游戏设置菜单中绑定 [b]下一个工作区[/b] 和 [b]工作区管理[/b] 两个按键，默认没有绑定。
+在游戏选项里绑定 [b]下一个工作区[/b] 和 [b]工作区管理[/b] 两个键。这两个键默认没有绑定。
 
-游戏内文字支持游戏的所有语言。不需要任何特殊权限。适用于游戏版本 0.46D。
+游戏内文字支持游戏的所有语言。模组不需要任何特殊权限。适用于游戏版本 0.46D。
 
 [h2]源码与文档[/h2]
 [list]

@@ -2,7 +2,7 @@
 
 ![Window Workspaces cover](../attachments/cover.png)
 
-Window Workspaces makes working with many container windows easier. Windows snap into place while you drag them, and workspaces let you keep several sets of open containers and switch between them with one key, like virtual desktops.
+Window Workspaces adds two things for container windows. Windows snap into place while you drag them. Workspaces keep several sets of open containers, and one key switches between them, like virtual desktops.
 
 ## Snapping
 
@@ -16,7 +16,7 @@ Hold **Alt** while dragging to move a window freely.
 
 A workspace is a set of open containers, each with its position and selected tab. You start in one workspace, and everything you open belongs to it.
 
-When you switch to another workspace, the windows of the one you leave are remembered and closed, and the windows of the one you enter open where you left them. A new workspace starts empty: switch to it and open the containers it should hold.
+When you switch to another workspace, the windows of the one you leave are remembered and closed, and the windows of the one you enter open where you left them. A new workspace starts empty. Switch to it and open the containers it should hold.
 
 See [Workspaces](workspaces.md) for the manager and the keys.
 
@@ -29,8 +29,8 @@ Bind the two keys in the game's options menu, in the key bindings:
 | Next workspace | Switches to the next workspace. Hold Shift for the previous one. |
 | Workspace manager | Opens the window to switch, create, rename and delete workspaces. |
 
-Neither key has a default. The mod's options (the gear in the Mods menu) turn snapping, grid snapping and the grid itself on or off.
+Neither key has a default. The mod's options (the gear in the Mods menu) turn **Snap windows**, **Snap to the grid** and **Show the grid while dragging** on or off. All three are on by default.
 
 ## Compatibility
 
-The mod changes nothing in the game's code. It works on its own and together with Performance Fixes, which makes switching back to a workspace nearly instant. It needs no special permissions.
+The mod hooks only `PixelWindow.Show`, `Hide` and `Destroy`, to keep a list of open windows, and changes no game behaviour. It works on its own and together with Performance Fixes, which makes switching back to a workspace nearly instant. It needs no special permissions.
