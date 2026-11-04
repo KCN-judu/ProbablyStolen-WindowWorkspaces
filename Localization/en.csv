@@ -8,7 +8,7 @@ opt_grid_shown_tip,A faint grid appears while a window is being dragged.
 opt_key_cycle,Next workspace
 opt_key_cycle_tip,Switch to the next workspace. Hold Shift for the previous one.
 opt_key_manager,Workspace manager
-opt_key_manager_tip,Open the workspace manager to switch to create to rename and to delete workspaces.
+opt_key_manager_tip,Open the workspace manager to switch, create, rename and delete workspaces.
 window_title,Workspaces
 workspace,Workspace #
 current,CURRENT
