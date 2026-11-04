@@ -20,6 +20,8 @@ namespace WindowWorkspaces
         static Harmony harmony;
         static readonly List<PixelWindow> open = new List<PixelWindow>();
 
+        // Show and Hide are patched on every overload PixelWindow itself declares, as postfixes, so the list changes
+        // only after the game has acted. Destroy (the parameterless overload) takes a prefix.
         internal static void Patch()
         {
             if (harmony != null) return;
@@ -41,11 +43,13 @@ namespace WindowWorkspaces
             open.Clear();
         }
 
+        // Harmony postfix for Show: remembers the window once.
         static void Shown(PixelWindow __instance)
         {
             if (__instance != null && !open.Contains(__instance)) open.Add(__instance);
         }
 
+        // Harmony hook for Hide and Destroy: forgets the window.
         static void Gone(PixelWindow __instance)
         {
             open.Remove(__instance);
@@ -68,6 +72,7 @@ namespace WindowWorkspaces
         // Takes out the windows destroyed with a scene, which never go through Destroy. Returns how many.
         internal static int Forget() { return open.RemoveAll(w => !Alive(w)); }
 
+        // False for a window Unity has destroyed: the managed object lives on, its parts are gone.
         static bool Alive(PixelWindow w)
         {
             try { return w != null && w.handler != null && w.rectTransform != null; }

@@ -55,6 +55,7 @@ namespace WindowWorkspaces
 
         static bool announced;
 
+        // Once per frame from WorkspacesMod.BeforeRender: the press, drag and release steps.
         internal static void Frame()
         {
             if (Input.GetMouseButtonDown(0)) Press();
@@ -81,6 +82,8 @@ namespace WindowWorkspaces
 
         static int presses;
 
+        // The game does not say which window it is dragging, so the first window whose position changed since the
+        // press is taken to be it.
         static void Detect()
         {
             for (int i = 0; i < watched.Count; i++)
@@ -92,6 +95,8 @@ namespace WindowWorkspaces
             }
         }
 
+        // Collects the targets once per drag: the other visible windows, then the screen box, which must stay last
+        // (SnapRule.Best treats the last target as the screen).
         static void BeginDrag(PixelWindow w)
         {
             if (!announced) { announced = true; Debug.Log(WorkspacesMod.Tag + "snapping a dragged window (first this session)"); }
@@ -111,12 +116,16 @@ namespace WindowWorkspaces
             ShowOverlay();
         }
 
+        // A window's rectangle in screen pixels.
         static Box BoxOf(RectTransform t)
         {
             t.GetWorldCorners(corners);
             return new Box { L = corners[0].x, B = corners[0].y, R = corners[2].x, T = corners[1].y };
         }
 
+        // One frame of a drag. `raw` is the position the game last set; the snapped position is written over it
+        // and never fed back, so a drag cannot drift. Edges are decided per axis first, and the grid only fills in
+        // an axis that has no edge. Distances are in UI pixels, times the window's scale for screen pixels.
         static void Drag()
         {
             if (rt == null || !dragged.IsVisible()) { EndDrag(); return; }
@@ -158,6 +167,8 @@ namespace WindowWorkspaces
             Guides(hitX, lineX, hitY, lineY, s);
         }
 
+        // Lets go of the dragged window and the noted positions, so no window is kept between drags, and fades the
+        // overlay out.
         static void EndDrag()
         {
             dragged = null;
@@ -167,6 +178,7 @@ namespace WindowWorkspaces
             Guides(false, 0f, false, 0f, 1f);
         }
 
+        // Stops at once without a fade: after an error, when leaving the store, and on disable.
         internal static void Abort()
         {
             pressed = false;
@@ -177,6 +189,8 @@ namespace WindowWorkspaces
 
         // ---- Overlay ---------------------------------------------------------------------------------------------
 
+        // The overlay is built on the first drag. The grid canvas sorts one below the windows' canvas and the guides
+        // one above it, so the grid is under the windows and the guides over them.
         static void ShowOverlay()
         {
             EnsureOverlay();
@@ -193,6 +207,7 @@ namespace WindowWorkspaces
             fadeTarget = 1f;
         }
 
+        // Fades the grid in and out over FadeTime, in unscaled time, and switches the overlay off at zero.
         static void Fade()
         {
             float step = Time.unscaledDeltaTime / FadeTime;
@@ -201,6 +216,8 @@ namespace WindowWorkspaces
             if (fade <= 0f && gridRoot != null) { gridRoot.SetActive(false); guideRoot.SetActive(false); }
         }
 
+        // Shows or hides the two guide bars: a vertical one at screen x, a horizontal one at screen y, at least one
+        // pixel wide.
         static void Guides(bool showV, float x, bool showH, float y, float s)
         {
             if (guideV == null) return;
@@ -211,6 +228,7 @@ namespace WindowWorkspaces
             if (showH) { guideH.anchoredPosition = new Vector2(0f, y); guideH.sizeDelta = new Vector2(Screen.width, w); }
         }
 
+        // Builds the overlay objects once. They ignore raycasts, so they never take clicks from windows.
         static void EnsureOverlay()
         {
             if (gridRoot != null) return;
@@ -234,6 +252,8 @@ namespace WindowWorkspaces
             guideRoot.SetActive(false);
         }
 
+        // A hidden overlay canvas that survives scene changes. It only shows sprites from the game's atlas and
+        // holds no store object, so leaving the store needs nothing from it.
         static GameObject NewCanvas(string name, out Canvas canvas)
         {
             var go = new GameObject(name);
@@ -289,6 +309,7 @@ namespace WindowWorkspaces
             r.sizeDelta = new Vector2(Screen.width, Screen.height);
         }
 
+        // On disable: stops and removes the overlay.
         internal static void Destroy()
         {
             Abort();

@@ -23,6 +23,8 @@ namespace WindowWorkspaces
 
         static bool IsOpen { get { return window != null && window.handler != null && window.IsVisible(); } }
 
+        // Rebuilds the radio buttons for the current state and shows the window. Names appear only up to NamedUpTo
+        // workspaces and are cut to NameLength characters, so the notice stays narrow.
         public static void Show(int current, int count)
         {
             if (count <= 0) return;
@@ -73,6 +75,7 @@ namespace WindowWorkspaces
             rt.position = new Vector3(Mathf.Round(p.x + Screen.width * 0.5f - cx), Mathf.Round(p.y + Screen.height * 0.95f - top), p.z);
         }
 
+        // Hides the notice after Hold seconds, unless the pointer is over it.
         internal static void Tick()
         {
             if (!IsOpen || Time.unscaledTime < hideAt) return;

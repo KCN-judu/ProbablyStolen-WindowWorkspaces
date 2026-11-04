@@ -31,6 +31,7 @@ namespace WindowWorkspaces
 
         static bool IsOpen { get { return window != null && window.IsAlive; } }
 
+        // The manager key.
         public static void Toggle()
         {
             if (IsOpen) Close();
@@ -49,6 +50,8 @@ namespace WindowWorkspaces
             if (IsOpen) Fill();
         }
 
+        // Opens at the last position (centred the first time). The current workspace is captured first so its row
+        // shows the windows that are open now.
         static void Open()
         {
             if (!Workspaces.Ready) return;
@@ -82,6 +85,7 @@ namespace WindowWorkspaces
             Fill();
         }
 
+        // Close callback: remembers the position and writes any pending rename.
         static void Closed()
         {
             if (window != null && window.Rect != null) lastPosition = window.Rect.anchoredPosition;
@@ -96,6 +100,7 @@ namespace WindowWorkspaces
             Fill();
         }
 
+        // Rebuilds every row from the workspaces; items are looked up once for all rows.
         static void Fill()
         {
             if (listHost == null || !IsOpen) return;

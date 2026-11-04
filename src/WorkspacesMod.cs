@@ -3,10 +3,12 @@ using UnityEngine;
 
 namespace WindowWorkspaces
 {
-    // Window snapping and workspaces of container windows.
+    // Entry point: window snapping and workspaces of container windows. Wires the other files together and owns
+    // the two key bindings and the three snapping options.
     //
-    // Nothing in the game is patched. Snapping runs right before the frame is drawn, after the game's own input
-    // loop has moved a dragged window, and only while the mouse button is held (see Snap).
+    // The only game methods patched are PixelWindow.Show, Hide and Destroy, to keep a list of open windows (see
+    // Windows). Snapping runs right before the frame is drawn, after the game's own input loop has moved a dragged
+    // window, and only while the mouse button is held (see Snap).
     // Workspaces open and close windows through the game's own calls, so whatever else hooks those (Performance
     // Fixes' canvases and fast hiding among them) applies unchanged (see Workspaces).
     public sealed class WorkspacesMod : IMod
@@ -27,11 +29,13 @@ namespace WindowWorkspaces
         static readonly KeyCode[] keys = new KeyCode[2];
         static bool lateWarned;
 
+        // The manifest's ID is the key for localized text and settings, so it is used when given instead of ModId.
         public void Init(ModManifest manifest)
         {
             if (manifest != null && !string.IsNullOrEmpty(manifest.ID)) modId = manifest.ID;
         }
 
+        // Can run again after OnDisable: every subscription is removed before it is added.
         public void OnEnable()
         {
             ReadConfig();
@@ -49,6 +53,7 @@ namespace WindowWorkspaces
             }
         }
 
+        // Undoes what OnEnable did and drops all state, so a disabled mod holds no store objects.
         public void OnDisable()
         {
             Canvas.willRenderCanvases -= BeforeRender;
@@ -63,6 +68,7 @@ namespace WindowWorkspaces
 
         internal static string L(string key) { return ModHelper.GetLocalized(modId, key); }
 
+        // The bound keys live in PlayerPrefs under KeyPref. A stored value that is not a KeyCode reads as unbound.
         static KeyCode LoadKey(int i)
         {
             try
@@ -79,6 +85,9 @@ namespace WindowWorkspaces
             try { PlayerPrefs.SetInt(KeyPref + keyNames[i], (int)k); PlayerPrefs.Save(); } catch (Exception) { }
         }
 
+        // Reads the keys and registers the options and key bindings, once per session (optionsAdded); a later
+        // OnEnable only re-applies the values. Each registration is guarded on its own, so a failing mod API leaves
+        // the rest working with the defaults.
         static void ReadConfig()
         {
             for (int i = 0; i < keys.Length; i++) keys[i] = LoadKey(i);
@@ -106,6 +115,7 @@ namespace WindowWorkspaces
             ApplySnap();
         }
 
+        // Copies the options to Snap; options that could not be registered (null) mean the defaults, all on.
         static void ApplySnap()
         {
             Snap.Enabled = snapOn == null || snapOn.Value;
@@ -113,6 +123,7 @@ namespace WindowWorkspaces
             Snap.GridShown = gridShown == null || gridShown.Value;
         }
 
+        // Logs the first five key presses, so Player.log shows whether the keys reach the mod.
         static int announced;
         static bool Announce(string what)
         {
@@ -120,6 +131,9 @@ namespace WindowWorkspaces
             return true;
         }
 
+        // Once per frame from the Ticker: follows the loaded save, handles the two keys, runs queued switch steps and
+        // the notice's timer. Keys are ignored while the game suppresses hotkeys. An exception is logged once and
+        // the next frame tries again.
         internal static void Tick()
         {
             try
@@ -159,6 +173,8 @@ namespace WindowWorkspaces
         }
     }
 
+    // Per-frame callback on a hidden DontDestroyOnLoad object (it holds no store object), so the keys work in every
+    // scene. OnDisable destroys it.
     public sealed class Ticker : MonoBehaviour
     {
         void Update() { WorkspacesMod.Tick(); }

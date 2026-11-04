@@ -23,10 +23,12 @@ namespace WindowWorkspaces
     // Workspaces are stored per save slot in PlayerPrefs, by item id, which is stable within a save.
     public static class Workspaces
     {
+        // At most nine workspaces.
         public const int Max = 9;
         const string Pref = "WindowWorkspaces.v2.slot.";
         const double BudgetMs = 3.0;
 
+        // One container in a workspace: its item id and the window's position and tab selection when last seen.
         public sealed class Entry
         {
             public int Id;
@@ -40,6 +42,7 @@ namespace WindowWorkspaces
             public readonly List<Entry> Entries = new List<Entry>();
         }
 
+        // One queued step of a switch: close a window, or open it at Position with the Tabs selection.
         sealed class Job
         {
             public GameItem Item;
@@ -74,6 +77,7 @@ namespace WindowWorkspaces
             return string.IsNullOrEmpty(n) ? WorkspacesMod.L("workspace").Replace("#", (i + 1).ToString()) : n;
         }
 
+        // On disable: forgets the save and every workspace (they stay in PlayerPrefs).
         internal static void Reset()
         {
             Flush();
@@ -159,6 +163,7 @@ namespace WindowWorkspaces
 
         // ---- Switching -------------------------------------------------------------------------------------------
 
+        // The next-workspace key. With a single workspace it only shows the notice.
         public static void Cycle(bool back)
         {
             if (store == null) return;
@@ -169,6 +174,9 @@ namespace WindowWorkspaces
 
         public static void SwitchTo(int target) { SwitchTo(target, true); }
 
+        // Records the open windows into the workspace being left, queues closes for windows the target does not have
+        // and opens for those it has. A window of the target that is already open is only moved. A switch
+        // started during a switch drops the queue and starts from what is on screen.
         static void SwitchTo(int target, bool notify)
         {
             if (store == null || target < 0 || target >= spaces.Count) return;
@@ -203,6 +211,7 @@ namespace WindowWorkspaces
             UnityEngine.Debug.Log(WorkspacesMod.Tag + "workspace " + (target + 1) + ": " + wanted.Count + " window(s)");
         }
 
+        // Once per frame: runs queued steps within BudgetMs, closes first (they were queued first).
         internal static void Step()
         {
             if (queue.Count == 0) return;
@@ -217,6 +226,8 @@ namespace WindowWorkspaces
             timer.Stop();
         }
 
+        // Runs one step. Opening writes the stored position to PlayerStore.contentWindowPositions, which
+        // OpenContentAction reads, and then restores the tabs; locked or no longer owned containers are skipped.
         static void Run(Job s)
         {
             var item = s.Item;
@@ -244,6 +255,7 @@ namespace WindowWorkspaces
 
         // ---- What is open ----------------------------------------------------------------------------------------
 
+        // Replaces workspace i's entries with the windows open now.
         static void Capture(int i)
         {
             if (i < 0 || i >= spaces.Count) return;
@@ -276,6 +288,7 @@ namespace WindowWorkspaces
             return result;
         }
 
+        // Finds the store's items with the given ids; ids that no longer exist are missing from the result.
         internal static Dictionary<int, GameItem> ItemsById(HashSet<int> ids)
         {
             var found = new Dictionary<int, GameItem>();
@@ -289,6 +302,7 @@ namespace WindowWorkspaces
             return found;
         }
 
+        // A container whose window exists, is not locked and whose item the player owns.
         static bool CanOpen(GameItem item)
         {
             var w = item.contentWindow;
@@ -305,6 +319,8 @@ namespace WindowWorkspaces
 
         internal static void Flush() { if (dirty) Save(); }
 
+        // Writes all workspaces and the current index to PlayerPrefs. Renames only set `dirty`;
+        // the write happens when the manager closes (Flush) or on the next change.
         static void Save()
         {
             dirty = false;
@@ -328,6 +344,7 @@ namespace WindowWorkspaces
             catch (Exception e) { UnityEngine.Debug.LogWarning(WorkspacesMod.Tag + "could not save workspaces: " + e.Message); }
         }
 
+        // Reads what Save wrote; malformed lines or entries are skipped, at most Max workspaces are taken.
         static void Load()
         {
             string text;
